@@ -12,6 +12,7 @@
 	<div>
 		<nav class="navbar navbar-expand-md navbar-dark bg-primary mb-2">
 			<div class="collapse navbar-collapse" id="navbarColor02">
+				미완성
 				<ul class="navbar-nav ml-auto">
 					<li class="nav-item"><a class="nav-link" href="#">[로고]</a></li>
 					<li class="nav-item"><a class="nav-link" href="#">[검색창]</a></li>
