@@ -29,6 +29,7 @@ import com.naver.security.LoginSuccessHandler;
 @Configuration
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
+	
 	// <security:http> 설정 부분
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
