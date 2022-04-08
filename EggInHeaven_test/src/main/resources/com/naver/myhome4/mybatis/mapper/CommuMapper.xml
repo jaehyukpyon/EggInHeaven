@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.naver.myhome4.mybatis.mapper.CommuMapper">
+
+	<select id="getListCount" parameterType="map" resultType="int">
+		select count(*) from community
+		
+		<include refid="search_"/>
+	</select>
+	
+	<sql id="search_">
+		  <if test='search_field!=null'>
+									where
+									<foreach collection="search_field" separator="or" item="index">
+				<choose>
+					<when test='index=="W"'>member_id</when>
+					<when test='index=="S"'>commu_subject</when>
+					<when test='index=="C"'>commu_content</when>
+				</choose>
+				like #{search_word}
+			</foreach>
+									</if>
+								
+	</sql>
+	
+	<select id="getMyListCount" resultType="int">
+		select count(*) from community
+		where member_id=#{member_id}
+	</select>
+	
+	<!-- 문법 오류
+		where rnum >= #{start}
+		==> 해결 법
+		1. where rnum &gt;= #{start}
+		2. where rnum <![CDATA[ >= ]]> #{start}
+		
+		==> 설명
+		1. HTML 문서는 '<', '>'와 같은 마크업 문자들을 파싱해서 읽어들이는 구조다.
+		   그래서 마크업 문자 들은 작다(<), 크다(로) 사용하기 위해서
+		   '&lt;' '&gt;' 등의 escape 문자열(escape character)을 이용해야 한다.
+		   
+		   < : &lt;
+		   > : &gt;
+		   
+		   2. CDATA(Character DATA) - XML 파서가 분석하지 않는 무자 데이터를 의미합니다.
+		   사용하는 방법은 <![CDATA[ 와 ]]> 사이에 문자들을 넣으면 됩니다.
+	 -->
+	<select id="getCommuList" parameterType="map" resultType="community">
+		select *
+		from( select rownum rnum, c.*
+			from (select*from community
+			<include refid="search_"/>
+			 order by commu_num desc) c
+		)
+		where rnum &gt;= #{start} and rnum &lt;= #{end}
+	</select>
+	
+	<select id="getMyCommuList" parameterType="java.util.HashMap" resultType="community">
+		select * from
+		( select rownum rnum, c.*
+			from (select*from community where member_id= #{member_id} order by commu_num desc) c
+		)
+		where rnum &gt;= #{start} and rnum &lt;= #{end} 
+	</select>
+	
+	<!-- 1. jdbcType=VARCHAR : 첨부 파일을 추가하지 않은 경우 에러 처리해 줍니다.
+			해당 필드가 null인 경우 jdbcType=VARCHAR로 처리하면 null로 설정됩니다.
+		
+		 2. insert 전에 (order="BEFORE")
+		 	조회(select nvl(max(BOARD_NUM),0)+1 from board) 합니다.
+		 	"BOARD_NUM" 프로퍼티에 저장합니다.
+		 	(public void setBOARD_NUM(int bOARD_NUM))
+		 	
+		 	insert문의 #{BOARD_NUM}는 지금 구한 값을 BoardBean에서 가져옵니다.
+		 	(public String getBOARD_NUM() {return BOARD_NUM;})		
+	
+	 -->
+	<insert id="insertCommunity" parameterType="community">
+        <selectKey resultType="int"      order="BEFORE" 
+                   keyProperty="commu_num">
+         select nvl(max(COMMU_NUM),0)+1 from community
+       </selectKey>
+       insert into community 
+       (COMMU_NUM, 
+        MEMBER_ID, COMMU_PASS, COMMU_SUBJECT, 
+       COMMU_CONTENT, COMMU_IMG,COMMU_READCOUNT, 
+       COMMU_DATE) 
+       values
+       (#{commu_num},
+        #{member_id},  #{commu_pass},  #{commu_subject},
+        #{commu_content}, #{commu_img, jdbcType=VARCHAR}, 
+        #{commu_readcount}, sysdate)
+   </insert>
+
+	<update id="setReadCountUpdate" parameterType="int">
+	update community 
+	set COMMU_READCOUNT=COMMU_READCOUNT+1 
+	where COMMU_NUM = #{number}
+	</update>
+	
+	
+	
+	<!-- map은 java.util.Map의 별칭입니다. -->
+	<select id="isCommunityWriter" parameterType="HashMap" resultType="community">
+		select * from community 
+		where COMMU_NUM=#{num}
+		and	  COMMU_PASS=#{pass}
+	</select>
+	
+	<select id="getDetail" parameterType="int" resultType="community">
+		select*
+		from community 
+		where COMMU_NUM = #{number}
+	</select>
+	
+	<update id="communityModify" parameterType="community">
+	update community 
+	set 
+		COMMU_SUBJECT=#{commu_subject},
+		COMMU_CONTENT=#{commu_content},
+		COMMU_IMG=#{commu_img, jdbcType=VARCHAR}
+	where COMMU_NUM=#{commu_num}	
+	</update>
+	
+	<delete id="communityDelete" parameterType="community">
+	delete community
+	where commu_num = #{commu_num}
+				
+	</delete>
+	
+		<select id="getDeleteFileList" resultType="String">
+		select commu_img from delete_file
+	</select>
+	
+	<delete id="deleteFileList" parameterType="String">
+		delete delete_file
+		where commu_img=#{commu_img}
+	</delete>
+	
+</mapper>

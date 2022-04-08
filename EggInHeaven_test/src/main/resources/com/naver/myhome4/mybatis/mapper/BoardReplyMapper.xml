@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+	
+<mapper namespace="com.naver.myhome4.mybatis.mapper.BoardReplyMapper">
+	
+	<select id="getList" resultType="BoardReply">
+		select *
+		from recipe_reply
+		where recipe_num = #{recipe_num}
+	</select>
+	
+	<insert id="addNewComment">
+		<selectKey resultType="int" keyProperty="reply_num" order="BEFORE">
+			select nvl(max(reply_num) + 1, 0)
+			from recipe_reply
+		</selectKey>
+		
+		insert
+		into recipe_reply(reply_num, recipe_num, member_id, content)
+		values(#{reply_num}, #{recipe_num}, #{member_id}, #{content})
+	</insert>
+	
+	<update id="updateComment">
+		update recipe_reply
+		set content = #{content}
+		where reply_num = #{reply_num}
+	</update>
+	
+	<delete id="deleteComment">
+		delete from recipe_reply
+		where reply_num = #{reply_num}
+	</delete>
+	
+</mapper>
