@@ -1,42 +1,48 @@
 package com.naver.myhome4.domain;
 
+import java.io.UnsupportedEncodingException;
+
+import javax.activation.DataSource;
+import javax.mail.MessagingException;
+import javax.mail.internet.MimeMessage;
+
+import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.mail.javamail.MimeMessageHelper;
+
 public class MailVO {
 
-	private String form = "type your own email address";
-	private String to;
-	private String subject = "회원 가입을 축하드립니다. - 제목";
-	private String content = "회원 가입을 축하드립니다. - 내용";
-
-	public String getForm() {
-		return form;
+	private JavaMailSender mailSender;
+	private MimeMessage message;
+	private MimeMessageHelper messageHelper;
+	
+	public MailVO(JavaMailSender mailSender) throws MessagingException {
+		this.mailSender = mailSender;
+		message = this.mailSender.createMimeMessage();
+		messageHelper = new MimeMessageHelper(message, true, "UTF-8");
 	}
 
-	public void setForm(String form) {
-		this.form = form;
+	public void setSubject(String subject) throws MessagingException {
+		messageHelper.setSubject(subject);
 	}
 
-	public String getTo() {
-		return to;
+	public void setText(String htmlContent) throws MessagingException {
+		messageHelper.setText(htmlContent, true);
 	}
 
-	public void setTo(String to) {
-		this.to = to;
+	public void setFrom(String email, String name) throws UnsupportedEncodingException, MessagingException {
+		messageHelper.setFrom(email, name);
 	}
 
-	public String getSubject() {
-		return subject;
+	public void setTo(String email) throws MessagingException {
+		messageHelper.setTo(email);
 	}
 
-	public void setSubject(String subject) {
-		this.subject = subject;
+	public void addInline(String contentId, DataSource dataSource) throws MessagingException {
+		messageHelper.addInline(contentId, dataSource);
 	}
 
-	public String getContent() {
-		return content;
-	}
-
-	public void setContent(String content) {
-		this.content = content;
+	public void send() {
+		mailSender.send(message);
 	}
 
 }

@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- SQL 맵퍼 파일은 xml이기 때문에 제일 먼저 xml 선언이 옵니다. -->
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.naver.myhome4.mybatis.mapper.MainMapper">
+
+
+
+	<select id="getBestRec" resultType="com.naver.myhome4.domain.MainRecipe">
+		<![CDATA[
+			select *
+			from (
+			    select rownum rnum, r.*
+			    from(
+			        select 
+			            rec.*,
+			            img.cook_db,img.cook_num,img.cook_original,
+			            row_number() over (PARTITION BY rec.recipe_num ORDER BY rec.recipe_num) as n
+			        from
+			            recipe rec, cook_image img
+			        where rec.recipe_num = img.recipe_num 
+			        ) r
+			    where r.n = 1
+			    )
+			where rnum >= 1 and rnum <= 10
+			order by recipe_best desc
+		]]>
+	</select>
+	
+	<select id="getNewRec" resultType="com.naver.myhome4.domain.MainRecipe">
+		<![CDATA[
+			select *
+			from (
+			    select rownum rnum, r.*
+			    from(
+			        select 
+			            rec.*,
+			            img.cook_db,img.cook_num,img.cook_original,
+			            row_number() over (PARTITION BY rec.recipe_num ORDER BY rec.recipe_num) as n
+			        from
+			            recipe rec, cook_image img
+			        where rec.recipe_num = img.recipe_num 
+			        ) r
+			    where r.n = 1
+			    )
+			where rnum >= 1 and rnum <= 10
+			order by recipe_date desc
+		]]>
+	</select>
+
+
+	
+
+
+
+</mapper>
+

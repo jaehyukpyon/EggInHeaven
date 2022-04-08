@@ -22,9 +22,11 @@ public class LoginSuccessHandler implements AuthenticationSuccessHandler {
 	@Override
 	public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response,
 			Authentication authentication) throws IOException, ServletException {
-		
+		logger.info(authentication.getPrincipal().toString());
 		logger.info("로그인 성공");
-		String url = request.getContextPath() + "/board/list";
+		
+		String url = request.getContextPath() + "/main";
+		logger.info(url);
 		
 		response.sendRedirect(url);
 	}

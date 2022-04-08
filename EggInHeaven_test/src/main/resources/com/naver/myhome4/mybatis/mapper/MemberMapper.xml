@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- SQL 맵퍼 파일은 xml이기 때문에 제일 먼저 xml 선언이 옵니다. -->
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.naver.myhome4.mybatis.mapper.MemberMapper">
+	
+	<select id="isId" resultType="member" parameterType="String">
+		select * from member where member_id = #{id}
+	</select>
+	
+	<insert id="insert" parameterType="Member">
+		insert into member
+		(member_id,password,email,name,gender)		
+		values(
+			#{id},#{password},#{email},
+			#{name},#{gender}
+		)
+	</insert>
+	
+	<insert id="createAuthKey">
+		insert into MP_MEMBER_AUTH values(#{email},#{authKey})
+	</insert>
+	
+	<update id="memberAuth">
+		<![CDATA[
+		update MEMBER set 
+		MEMBER_AUTH = 1 
+		where 
+			member_id = #{id}
+			and
+			(select count(*) 
+				from MP_MEMBER_AUTH 
+				where 
+				MEMBEREMAIL = #{email}
+				and
+				AUTHKEY = #{key}
+				) > 0
+		]]>
+	</update>
+	
+	<!-- 비밀번호 찾기(새로운 비밀번호 발급) -->
+	<update id="newPW">
+		update member
+		set
+		password = #{password}
+		where email = #{email}
+		and
+		member_id = #{id}
+		
+	</update>
+	
+
+	
+
+</mapper>

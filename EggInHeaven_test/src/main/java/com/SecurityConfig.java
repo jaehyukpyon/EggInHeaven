@@ -34,6 +34,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	protected void configure(HttpSecurity http) throws Exception {
 		
 		http.authorizeRequests().antMatchers("/resources/**/**").permitAll()
+				/*
 				.antMatchers("/member/login").permitAll()
 				.antMatchers("/member/join").permitAll()
 				.antMatchers("/member/idcheck").permitAll()
@@ -41,6 +42,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 				.antMatchers("/member/list").access("hasRole('ROLE_ADMIN')")
 				.antMatchers("/member/info").access("hasRole('ROLE_ADMIN')")
 				.antMatchers("/**").access("hasAnyRole('ROLE_ADMIN', 'ROLE_MEMBER')");
+				*/
+				.antMatchers("/**").permitAll();
 		
 		http.formLogin().loginPage("/member/login")
 			.loginProcessingUrl("/member/loginProcess")
