@@ -1,24 +1,17 @@
 package com;
 
-import javax.annotation.security.PermitAll;
-
-import org.aspectj.weaver.ast.And;
-import org.springframework.boot.web.servlet.ServletListenerRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
-import org.springframework.security.core.session.SessionRegistry;
-import org.springframework.security.core.session.SessionRegistryImpl;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.access.AccessDeniedHandler;
 import org.springframework.security.web.authentication.AuthenticationFailureHandler;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
-import org.springframework.security.web.session.HttpSessionEventPublisher;
 
 import com.naver.security.CustomAccessDeniedHandler;
 import com.naver.security.CustomUserDetailsService;
@@ -40,11 +33,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 				.antMatchers("/member/joinProcess").permitAll()
 				.antMatchers("/member/list").access("hasRole('ROLE_ADMIN')")
 				.antMatchers("/member/info").access("hasRole('ROLE_ADMIN')")
-				.antMatchers("/**").access("hasAnyRole('ROLE_ADMIN', 'ROLE_MEMBER')");
+				.antMatchers("/**").permitAll();
 		
 		http.formLogin().loginPage("/member/login")
 			.loginProcessingUrl("/member/loginProcess")
-			.usernameParameter("id")
+			.usernameParameter("member_id")
 			.passwordParameter("password")
 			.successHandler(loginSuccessHandler())
 			.failureHandler(loginFailHandler());
