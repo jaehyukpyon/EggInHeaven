@@ -34,6 +34,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	protected void configure(HttpSecurity http) throws Exception {
 		
 		http.authorizeRequests().antMatchers("/resources/**/**").permitAll()
+
 				/*
 				.antMatchers("/member/login").permitAll()
 				.antMatchers("/member/join").permitAll()
@@ -45,6 +46,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 				*/
 				.antMatchers("/**").permitAll();
 		
+
 		http.formLogin().loginPage("/member/login")
 			.loginProcessingUrl("/member/loginProcess")
 			.usernameParameter("id")
