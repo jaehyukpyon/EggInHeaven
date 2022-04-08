@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+	
+<mapper namespace="com.naver.myhome4.mybatis.mapper.MaterialMapper">
+
+<insert id="insertMaterial" parameterType="material">
+<selectKey resultType="int" order="BEFORE" keyProperty="MATERIAL_NUM">
+			SELECT NVL(MAX(MATERIAL_NUM), 0) + 1
+			FROM MATERIAL
+		</selectKey>
+		INSERT
+		INTO MATERIAL
+		VALUES(#{MATERIAL_NUM}, #{MATERIAL_NAME},#{MATERIAL_AMOUNT}
+			)
+</insert>
+
+<select id="getDetail" resultType="material" parameterType="int">
+		SELECT *
+		FROM MATERIAL
+		WHERE m_num = #{material_num}		
+	</select>
+	
+<delete id="materialDelete" parameterType="int">
+ delete from material
+    where m_num = #{material_num}
+</delete>
+
+<update id="stepModify" parameterType="recipe">
+		UPDATE material
+		SET MATERIAL_NAME = #{MATERIAL_NAME},MATERIAL_AMOUNT = #{MATERIAL_AMOUNT}
+		WHERE m_num = #{material_num}
+	</update>
+	<!-- #{STEP_NUM}, #{STEP_INDEX}, #{STEP_ORIGINAL, jdbcType=VARCHAR}, 
+		#{STEP_DB, jdbcType=VARCHAR}, #{STEP_CONTENT} -->
+</mapper>

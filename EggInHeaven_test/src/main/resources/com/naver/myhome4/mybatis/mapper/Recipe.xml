@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+	
+<mapper namespace="com.naver.myhome4.mybatis.mapper.RecipeMapper">
+
+<insert id="insertRecipe" parameterType="recipe">
+<selectKey resultType="int" order="BEFORE" keyProperty="RECIPE_NUM">
+			SELECT NVL(MAX(RECIPE_NUM), 0) + 1
+			FROM RECIPE
+		</selectKey>
+		INSERT
+		INTO RECIPE
+		VALUES(#{RECIPE_NUM}, #{RECIPE_TITLE}, #{RECIPE_CONTENT}, 
+			, #{RECIPE_TIME}, #{RECIPE_READCOUNT},#{RECIPE_BEST},
+			0,0,SYSDATE)
+</insert>
+
+<select id="getDetail" resultType="recipe" parameterType="int">
+		SELECT *
+		FROM RECIPE
+		WHERE r_num=#{recipe_num}	
+	</select>
+	
+	<delete id="recipeDelete" parameterType="recipe">
+ delete from recipe
+    where r_num=#{recipe_num}
+</delete>
+
+<update id="stepModify" parameterType="recipe">
+		UPDATE BOARD3
+		SET RECIPE_TITLE = #{RECIPE_TITLE}, RECIPE_CONTENT = #{RECIPE_CONTENT}, 
+			RECIPE_TIME = #{RECIPE_TIME}
+		WHERE r_num=#{recipe_num}
+	</update>
+	<!-- #{RECIPE_NUM}, #{RECIPE_TITLE}, #{RECIPE_CONTENT}, 
+			, #{RECIPE_TIME}, #{RECIPE_READCOUNT},#{RECIPE_BEST},
+			0,0,SYSDATE) -->
+</mapper>
