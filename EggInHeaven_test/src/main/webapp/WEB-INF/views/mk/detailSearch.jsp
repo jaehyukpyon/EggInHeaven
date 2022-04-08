@@ -3,247 +3,210 @@
 <!DOCTYPE html>
 <html>
 <head>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+<link rel="stylesheet"href="${pageContext.request.contextPath}/resources/css/hootstrap.css">
+<script src="http://code.jquery.com/jquery-latest.min.js"></script>
+<script src="//code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script src="${pageContext.request.contextPath}/resources/js/checkbox.js"></script>
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <jsp:include page="header.jsp" />
 <style>
-.dropbtn {
-	background-color: #ea2129;
-	color: white;
-	padding: 16px;
-	font-size: 16px;
-	border: none;
-}
-
+body{
+min-width: 768px}
 .dropdown {
-	position: relative;
-	display: inline-block;
+  position: relative;
+  display: inline-block;
 }
 
 .dropdown-content {
-	display: none;
-	position: absolute;
-	background-color: #f1f1f1;
-	min-width: 160px;
-	box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
-	z-index: 1;
+  display: none;
+  position: absolute;
+  background-color: #f1f1f1;
+  min-width: 100px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
 }
 
-.dropdown-content .a {
-	color: black;
-	padding: 12px 16px;
-	text-decoration: none;
-	display: block;
+.dropdown-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
 }
 
-.dropdown-content .a:hover {
-	background-color: #ddd;
+.dropdown-content a:hover {background-color: #ddd;}
+
+.dropdown:hover .dropdown-content {display: block;}
+
+.dropdown:hover .dropbtn btn btn-primary btn-block {background-color: #3e8e41;}
+
+.dropbtn btn btn-primary btn-block {
+	width: 4rem;
 }
 
-.dropdown:hover .dropdown-content {
-	display: block;
+
+.progress:hover{
+	cursor: pointer;
 }
 
-.dropdown:hover .dropbtn {
-	background-color: #3e8e41;
+.del{
+	border: none;	
 }
-
-.dropdown-content {
-	align-items:
-}
-
-.slide {
-	voerflow: hidden;
+.asd{
+	background-color: rgb(239,239,239);
 	position: relative;
 	display: inline-block;
+	float: left;
+	width: 85%;
+	overflow: hidden;
+	height: 3.5rem;
+}
+.add{
+	display: inline-block;
+	min-width: 70px;	
 }
 
-.slide-container {
-	width: 300vw;
-	height: 400px;
-	display: flex;
-	transition: all 0.8s;
-	padding: 0 1.5rem;
-}
-
-.box {
-	margin: 0.5rem 0.5rem;
-	width: 150px;
-	height: 150px;
-}
-
-.box:nth-of-type(1) {
-	background-color: red
-}
-
-.box:nth-of-type(2) {
-	background-color: green
-}
-
-.box:nth-of-type(3) {
-	background-color: blue
-}
-
-.box:nth-of-type(4) {
-	background-color: red
-}
-
-.next {
-	position: absolute;
-	top: 20%;
-	right: 0;
-}
-
-.prev {
-	position: absolute;
-	top: 20%;
-	left: 0;
-	top: 20%;
-}
-
-.list {
-	border: solid 0.5px;
-	align-items: center !important;
-	justify-content: center !important;
+.box{
+	width:0.2rem;
+	height: 1rem;
+	border: solid; 
+	cursor: pointer;
+	z-index: 10;
+	position : static !important;
 }
 </style>
 </head>
 <body>
-	<div class="card-body d-flex flex-column justify-content-center align-items-center">
-		<div class="dropdown">
-			<button class="dropbtn">유제품</button>
-			<div class="dropdown-content">
-				<div class="a">
-					우유 <input type="checkbox" class="ckbox">
-				</div>
-				<div class="a">
-					밀크 <input type="checkbox" class="ckbox">
-				</div>
-				<div class="a">
-					요거트 <input type="checkbox" class="ckbox">
-				</div>
-				<div class="a">
-					치즈<input type="checkbox" class="ckbox">
-				</div>
-				<div class="a">
-					우유 <input type="checkbox" class="ckbox">
+<div class="container">
+	<form id="formData" name="2" action="2">	
+	<div class="parent">
+			<div class="dropdown">
+				<button class="dropbtn btn btn-primary btn-block btn btn-primary btn-block btn btn-primary btn-block" name="milk" value="유제품">유제품</button>
+				<div class="dropdown-content">
+					<div >
+						우유 <input type="checkbox" name="milk" value="우유" class="ckbox">
+					</div>
+					<div >
+						버터 <input type="checkbox" name="milk" value="버터" class="ckbox">
+					</div>
+					<div >
+						치즈 <input type="checkbox" name="milk" value="치즈" class="ckbox">
+					</div>
+					<div >
+						생크림<input type="checkbox" name="milk" value="생크림" class="ckbox">
+					</div>
+					<div >
+						요거트 <input type="checkbox" name="milk" value="요거트" class="ckbox">
+					</div>
 				</div>
 			</div>
+			<div class="dropdown">
+				<button class="dropbtn btn btn-primary btn-block btn btn-primary btn-block" name="meat">육류</button>
+				<div class="dropdown-content">
+					<div >
+						돼지고기 <input type="checkbox" name="meat" value="돼지고기" class="ckbox">
+					</div>
+					<div >
+						소고기 <input type="checkbox" name="meat" value="소고기" class="ckbox">
+					</div>
+					<div >
+						닭고기 <input type="checkbox" name="meat" value="닭고기" class="ckbox">
+					</div>
+					<div >
+						오리고기<input type="checkbox" name="meat" value="오리고기" class="ckbox">
+					</div>
+					<div >
+						가공육 <input type="checkbox" name="meat" value="가공육" class="ckbox">
+					</div>
+				</div>
+			</div>
+			<div class="dropdown">
+				<button class="dropbtn btn btn-primary btn-block" name="vegetable">채소류</button>
+				<div class="dropdown-content">
+					<div >
+						당근 <input type="checkbox" name= "vegetable" value="당근"class="ckbox">
+					</div>
+					<div >
+						양파 <input type="checkbox" name= "vegetable" value="양파"class="ckbox">
+					</div>
+					<div >
+						파 <input type="checkbox" name= "vegetable" value="파" class="ckbox">
+					</div>
+					<div >
+						시금치<input type="checkbox" name= "vegetable" value="시금치" class="ckbox">
+					</div>
+					<div >
+						콩나물 <input type="checkbox" name= "vegetable" value="콩나물" class="ckbox">
+					</div>
+				</div>
+			</div>
+			<div class="dropdown">
+				<button class="dropbtn btn btn-primary btn-block" name="serial">곡 류</button>
+				<div class="dropdown-content">
+					<div >
+						밀가루 <input type="checkbox" name="serial" value="밀가루"class="ckbox">
+					</div>
+					<div >
+						쌀 <input type="checkbox" name="serial" value="쌀" class="ckbox">
+					</div>
+					<div >
+						옥수수 <input type="checkbox" name="serial" value="옥수수" class="ckbox">
+					</div>
+					<div >
+						보리<input type="checkbox" name="serial" value="보리" class="ckbox">
+					</div>
+					<div >
+						콩 <input type="checkbox" name="serial" value="콩" class="ckbox">
+					</div>
+				</div>
+			</div>
+			<div class="dropdown">
+				<button class="dropbtn btn btn-primary btn-block" name="seafood">해산물</button>
+				<div class="dropdown-content">
+					<div >
+						조개류 <input type="checkbox" name="seafood" value ="조개류" class="ckbox">
+					</div>
+					<div >
+						생선류 <input type="checkbox" name="seafood" value="생선류" class="ckbox">
+					</div>					
+				</div>
+			</div>
+			<div style="display: inline-block; width: 11rem;">
+				<div class="progress" style="z-index: 10">
+					<div id="progress-bar" class="progress-bar bg-primary" style="width: 2rem;">					
+					</div>
+					<div class="box">
+					</div>										
+				</div> 				
+			</div>
+			
+			<input type="text" id ="time" value="10" style="border: none; max-width:2rem; text-align: right;" readonly>분
+			<!-- 1. var num= progress 숫자 ==  text.value 2. text 클릭시 -->
+			
 		</div>
-		<div class="dropdown">
-			<button class="dropbtn">육류</button>
-			<div class="dropdown-content">
-				<div class="a">
-					1 <input type="checkbox" class="ckbox">
-				</div>
-				<div class="a">
-					2 <input type="checkbox" class="ckbox">
-				</div>
-				<div class="a">
-					3 <input type="checkbox" class="ckbox">
-				</div>
-				<div class="a">
-					4<input type="checkbox" class="ckbox">
-				</div>
-				<div class="a">
-					5 <input type="checkbox" class="ckbox">
-				</div>
+		<!-- search부분 -->
+		<div class="research-container">
+				<br>
+				<br>
+				<h5 class="card-title text-primary">선택된 목록</h5>
+				
+			<div class="asd">
 			</div>
-		</div>
-		<div class="dropdown">
-		<button class="dropbtn">채소류</button>
-		<div class="dropdown-content">
-			<div class="a">
-				우유 <input type="checkbox" class="ckbox">
+			<div style="float: right; background-color: rgb(239,239,239); width: 15%; height: 3.5rem;">			
+				  <button id="sub" type="button" style="width: 100%;height: 100%; overflow: hidden;">총 <span id="count">0</span>개 재료 검색</button> 
+				<!--   <button id="sub" type="submit" style="width: 100%;height: 100%; overflow: hidden;">총 <span id="count">0</span>개 재료 검색</button> -->
 			</div>
-			<div class="a">
-				밀크 <input type="checkbox" class="ckbox">
-			</div>
-			<div class="a">
-				요거트 <input type="checkbox" class="ckbox">
-			</div>
-			<div class="a">
-				치즈<input type="checkbox" class="ckbox">
-			</div>
-			<div class="a">
-				우유 <input type="checkbox" class="ckbox">
-			</div>
-		</div>
-		</div>
-		<div class="dropdown">
-		<button class="dropbtn">곡 류</button>
-		<div class="dropdown-content">
-			<div class="a">
-				우유 <input type="checkbox" class="ckbox">
-			</div>
-			<div class="a">
-				밀크 <input type="checkbox" class="ckbox">
-			</div>
-			<div class="a">
-				요거트 <input type="checkbox" class="ckbox">
-			</div>
-			<div class="a">
-				치즈<input type="checkbox" class="ckbox">
-			</div>
-			<div class="a">
-				우유 <input type="checkbox" class="ckbox">
-			</div>
-		</div>
-		</div>
-		<div class="dropdown">
-		<button class="dropbtn">해산물</button>
-		<div class="dropdown-content">
-			<div class="a">
-				우유 <input type="checkbox" class="ckbox">
-			</div>
-			<div class="a">
-				밀크 <input type="checkbox" class="ckbox">
-			</div>
-			<div class="a">
-				요거트 <input type="checkbox" class="ckbox">
-			</div>
-			<div class="a">
-				치즈<input type="checkbox" class="ckbox">
-			</div>
-			<div class="a">
-				우유 <input type="checkbox" class="ckbox">
-			</div>
-		</div>
-		</div>
-		<hr>
-		<div>
-			요리시간
-			<div class="progress mb-2">
-				<div class="progress-bar bg-primary w-25" role="progressbar"
-					aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
-			</div>
-		</div>
-	</div>
-	<hr>
-	<div class="card-body d-flex flex-column justify-content-center align-items-center">
-		<div>
-			<label>랭킹 레시피 리스트 </label>
-		</div>
-		<div class="slide">
-			<div>
-				<div class="dropbtn">
-					<div>box1</div>
-					<div>설명 글</div>
-				</div>
-				<div class="dropbtn">
-					<div>box2</div>
-				</div>
-				<div class="dropbtn">
-					<div>box3</div>
-				</div>
-				<div class="dropbtn">
-					<div>box4</div>
-				</div>
-			</div>
-			<button class="next">&gt;</button>
-			<button class="prev">&lt;</button>
-		</div>
-	</div>
+		</div>		
+	</form>
+	
+	
+	<div id="recipe" style="border: solid; display: flex;">  
+	<br>
+	<br>	 
+	<br>
+	<br>
+	</div>  
+	</div><!-- 콘테이너 -->
 </body>
-
 </html>

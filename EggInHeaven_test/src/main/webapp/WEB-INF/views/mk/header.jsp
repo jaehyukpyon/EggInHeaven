@@ -16,13 +16,13 @@
 	
 	<div class="card-body d-flex flex-column justify-content-center align-items-center">		
 		<h4 id ="logo" class="card-title text-primary">Egg in Heaven</h4>				
-								<span> [ admin ] </span> if 로그인시 표시
+								<h6 class="text-primary"> [ admin ]</h6> 
 	</div>
 
 		<nav class="navbar navbar-expand-md navbar-dark bg-primary mb-2">
 			<div class="collapse navbar-collapse justify-content-center" id="navbarColor02">
 				<ul class="navbar-nav">					
-					<li class="nav-item"><a class="nav-link" href="#">[레시피]</a></li>
+					<li class="nav-item"><a class="nav-link" href="2">[레시피]</a></li>
 					<li class="nav-item"><a class="nav-link" href="3">[상세검색]</a></li>
 					<li class="nav-item"><a class="nav-link" href="#">[랭킹]</a></li>
 					<li class="nav-item"><a class="nav-link" href="#">[커뮤니티]</a></li>
