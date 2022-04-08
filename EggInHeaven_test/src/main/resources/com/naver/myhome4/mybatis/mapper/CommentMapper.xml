@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.naver.myhome4.mybatis.mapper.CommentMapper">
+
+	<select id="getListCount" resultType="int" parameterType="int">
+		select count(*)
+		from commu_comment
+		where commu_num = #{commu_num}
+	</select>
+	
+	<select id="getCommentList" resultType="comment" parameterType="map">
+			select*
+		from( select rownum rnum, comment_num, member_id, comment_content, comment_date, commu_num
+			from(
+					select comment_num, member_id, comment_content, comment_date, commu_num
+					from commu_comment
+					where commu_num = #{commu_num}
+					order by comment_date desc
+				)
+			)
+			where rnum between #{start} and #{end}
+	</select>
+	
+	<insert id="commentsInsert" parameterType="comment">
+	insert into commu_comment 
+		values(com_seq.nextval, #{commu_num}, #{member_id}, #{comment_content}, sysdate)
+	</insert>
+	
+	
+	<update id="commentsUpdate" parameterType="comment">
+		update commu_comment set comment_content= #{comment_content} where comment_num = #{comment_num}
+	</update>
+	
+	<delete id="commentsDelete" parameterType="int">
+		delete commu_comment
+		where comment_num = #{comment_num}
+	</delete>
+	
+	
+</mapper>
