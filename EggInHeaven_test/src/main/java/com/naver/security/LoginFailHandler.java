@@ -34,8 +34,13 @@ public class LoginFailHandler implements AuthenticationFailureHandler {
 		
 		logger.info("exception.getMessage(): {}", exception.getMessage());
 		logger.info("로그인 실패");
+		//User is disabled
+		if(exception.getMessage().contains("User is disabled")) {
+			session.setAttribute("disabled", "disabled");
+		}else {
+			session.setAttribute("loginfail", "loginFailMsg");
+		}
 		
-		session.setAttribute("loginfail", "loginFailMsg");
 		
 		String url = request.getContextPath() + "/member/login";
 		

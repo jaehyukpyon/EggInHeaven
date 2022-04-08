@@ -1,4 +1,3 @@
-
 //검색바
 $(".default_option").click(function(){
   $(".dropdown ul").addClass("active");

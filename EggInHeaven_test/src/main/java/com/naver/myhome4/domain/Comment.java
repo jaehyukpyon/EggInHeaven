@@ -35,10 +35,6 @@ public class Comment {
 	}
 	public void setCommu_num(int commu_num) {
 		this.commu_num = commu_num;
-	} 
-
-	
-	
-	
+	} 	
 	
 }

@@ -29,22 +29,21 @@ import com.naver.security.LoginSuccessHandler;
 @Configuration
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
-	
 	// <security:http> 설정 부분
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		
 		http.authorizeRequests().antMatchers("/resources/**/**").permitAll()
 				/*
-				 * .antMatchers("/member/login").permitAll()
-				 * .antMatchers("/member/join").permitAll()
-				 * .antMatchers("/member/idcheck").permitAll()
-				 * .antMatchers("/member/joinProcess").permitAll()
-				 * .antMatchers("/member/list").access("hasRole('ROLE_ADMIN')")
-				 * .antMatchers("/member/info").access("hasRole('ROLE_ADMIN')")
-				 */
+				.antMatchers("/member/login").permitAll()
+				.antMatchers("/member/join").permitAll()
+				.antMatchers("/member/idcheck").permitAll()
+				.antMatchers("/member/joinProcess").permitAll()
+				.antMatchers("/member/list").access("hasRole('ROLE_ADMIN')")
+				.antMatchers("/member/info").access("hasRole('ROLE_ADMIN')")
+				.antMatchers("/**").access("hasAnyRole('ROLE_ADMIN', 'ROLE_MEMBER')");
+				*/
 				.antMatchers("/**").permitAll();
-				//.antMatchers("/**").access("hasAnyRole('ROLE_ADMIN', 'ROLE_MEMBER')");;
 		
 		http.formLogin().loginPage("/member/login")
 			.loginProcessingUrl("/member/loginProcess")
