@@ -3,7 +3,6 @@ package com.naver.myhome4.domain;
 import java.util.Date;
 
 public class Recipe {
-
 	private int recipe_num;
 	private String member_id;
 	private String recipe_title;

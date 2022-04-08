@@ -1,7 +1,6 @@
 package com.naver.myhome4.domain;
 
 public class Material {
-
 	private int material_num;
 	private int recipe_num;
 	private String material_name;
@@ -38,5 +37,5 @@ public class Material {
 	public void setMaterial_amount(String material_amount) {
 		this.material_amount = material_amount;
 	}
-
+  
 }
