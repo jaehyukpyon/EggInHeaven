@@ -5,10 +5,6 @@ import org.springframework.stereotype.Component;
 
 @Component
 @ConfigurationProperties(prefix = "my")
-/*
- * application.properties에서 설정한 내용 중 my로 시작하는 키에 대한 값을 필드에 주입. my.savefolder=
- * my.sendfile
- */
 public class MySaveFolder {
 
 	private String savefolder;
