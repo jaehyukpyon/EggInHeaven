@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+	
+<mapper namespace="com.naver.myhome4.mybatis.mapper.SauceMapper">
+
+<insert id="insertSauce" parameterType="sauce">
+		INSERT
+		INTO SAUCE
+		VALUES(#{recipe_num},#{sauce_name},#{sauce_amount})
+</insert>
+
+<select id="getDetail" resultType="map">
+		SELECT *
+		FROM SAUCE
+		WHERE recipe_num = #{recipe_num}		
+	</select>
+	
+<delete id="saucelDelete">
+ delete from sauce
+    where recipe_num = #{recipe_num}
+</delete>
+
+<update id="sauceModify">
+		UPDATE sauce
+		SET sauce_name = #{sauce_name},sauce_amount=#{sauce_amount}
+		WHERE recipe_num = #{recipe_num}
+	</update>
+	<!-- #{STEP_NUM}, #{STEP_INDEX}, #{STEP_ORIGINAL, jdbcType=VARCHAR}, 
+		#{STEP_DB, jdbcType=VARCHAR}, #{STEP_CONTENT} -->
+</mapper>

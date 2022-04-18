@@ -48,7 +48,7 @@ public class MemberServiceImpl implements MemberService {
 				m.getEmail() + "&key=" + key + "&id=" + m.getId() +
 				"' target='_blenk'>이메일 인증 확인</a>"
 			);
-		sendMail.setFrom("자기 이메일 적기", "egg in heaven");
+		sendMail.setFrom("yjklp10@naver.com", "egg in heaven");
 		sendMail.setTo(m.getEmail());
 		sendMail.send();
 		

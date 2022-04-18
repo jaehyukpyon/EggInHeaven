@@ -14,14 +14,14 @@ public class RecipeServiceImpl implements RecipeService{
 	private com.naver.myhome4.mybatis.mapper.RecipeMapper dao;
 	
 	@Override
-	public void insertRecipe(Recipe recipe) {
-		dao.insertRecipe(recipe);
+	public void insertRecipe(Recipe recipemodify) {
+		dao.insertRecipe(recipemodify);
 		
 	}
 
 	@Override
-	public int recipeModify(Recipe modifyrecipe) {
-		return dao.recipeModify(modifyrecipe);
+	public int recipeModify(Recipe recipe) {
+		return dao.recipeModify(recipe);
 	}
 
 	@Override
@@ -30,8 +30,8 @@ public class RecipeServiceImpl implements RecipeService{
 	}
 
 	@Override
-	public Recipe getDetail(int recipe_num) {
-		return dao.getDetail(recipe_num);
+	public Recipe getDetail(int num) {
+		return dao.getDetail(num);
 	}
 
 	

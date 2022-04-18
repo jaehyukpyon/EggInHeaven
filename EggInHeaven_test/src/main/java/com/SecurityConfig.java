@@ -18,6 +18,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.access.AccessDeniedHandler;
 import org.springframework.security.web.authentication.AuthenticationFailureHandler;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
+import org.springframework.security.web.csrf.CookieCsrfTokenRepository;
 import org.springframework.security.web.session.HttpSessionEventPublisher;
 
 import com.naver.security.CustomAccessDeniedHandler;
@@ -46,7 +47,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 				*/
 				.antMatchers("/**").permitAll();
 		
-
+		//http.csrf().csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse());
+		http.csrf().disable();
 		http.formLogin().loginPage("/member/login")
 			.loginProcessingUrl("/member/loginProcess")
 			.usernameParameter("id")
