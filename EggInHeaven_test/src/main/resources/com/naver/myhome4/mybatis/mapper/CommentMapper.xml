@@ -23,7 +23,7 @@
 			where rnum between #{start} and #{end}
 	</select>
 	
-	<insert id="commentsInsert" parameterType="comment">
+	<insert id="commentsInsert">
 	insert into commu_comment 
 		values(com_seq.nextval, #{commu_num}, #{member_id}, #{comment_content}, sysdate)
 	</insert>

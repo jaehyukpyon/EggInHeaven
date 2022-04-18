@@ -14,7 +14,16 @@ public class Community {
 	private String commu_img;
 	private int commu_readcount;
 	private String commu_date;
+	private int cnt;
 	
+	
+	
+	public int getCnt() {
+		return cnt;
+	}
+	public void setCnt(int cnt) {
+		this.cnt = cnt;
+	}
 	public MultipartFile getUploadfile() {
 		return uploadfile;
 	}
