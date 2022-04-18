@@ -2,7 +2,6 @@ package com.naver.myhome4.service;
 
 import java.util.List;
 
-import org.springframework.stereotype.Service;
 
 
 import com.naver.myhome4.domain.Community;
@@ -26,10 +25,10 @@ public interface CommunityService {
 	public Community getDetail(int num);
 	
 	// 내가 쓴 글 목록 보기
-	public List<Community> getMyCommuList(int page, int limit);
+	public List<Community> getMyCommuList(int page, int limit, String id);
 
 	//내가 쓴 글의 갯수 구하기
-	int getMyListCount();
+	int getMyListCount(String id);
 	
 	// 글 수정
 	public int communityModify(Community modifyboard);
@@ -43,6 +42,7 @@ public interface CommunityService {
 	public List<String> getDeleteFileList();
 
 	public void deleteFileList(String filename);
+
 
 
 

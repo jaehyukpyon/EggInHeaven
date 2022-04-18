@@ -33,15 +33,17 @@ $(document).ready(function(){
 function show(){
 	//파일 이름이 있는 경우 remove 이미지를 보이게 하고
 	//파일 이름이 없는 경우 remove 이미지 보이지 않게 합니다.
-	if($('#filevalue').text() == ''){
+	if($('#filevalue') == ''){
 		$(".remove").css('display', 'none');
+	
 	}else{
 		$(".remove").css({'display': 'inline-block',
-			               'position':'relative','top':'-5px'});
+			               'position':'relative','top':'32px'});
 	}
 }
-
 show();
+
+
 
 $("#upfile").change(function(){
 	check++;

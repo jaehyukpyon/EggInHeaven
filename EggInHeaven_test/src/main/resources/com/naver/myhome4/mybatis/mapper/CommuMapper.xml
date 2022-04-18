@@ -27,7 +27,7 @@
 	
 	<select id="getMyListCount" resultType="int">
 		select count(*) from community
-		where member_id=#{member_id}
+		where member_id = #{member_id}
 	</select>
 	
 	<!-- 문법 오류
@@ -44,23 +44,38 @@
 		   < : &lt;
 		   > : &gt;
 		   
-		   2. CDATA(Character DATA) - XML 파서가 분석하지 않는 무자 데이터를 의미합니다.
+		   2. CDATA(Character DATA) - XML 파서가 분석하지 않는 문자 데이터를 의미합니다.
 		   사용하는 방법은 <![CDATA[ 와 ]]> 사이에 문자들을 넣으면 됩니다.
 	 -->
-	<select id="getCommuList" parameterType="map" resultType="community">
+<select id="getCommuList" parameterType="map" resultType="community">
 		select *
 		from( select rownum rnum, c.*
-			from (select*from community
-			<include refid="search_"/>
-			 order by commu_num desc) c
+			from (select community.*, nvl(cnt,0) cnt
+			 		from
+			 		community left outer join (select commu_num, count(*) cnt
+						                         from commu_comment
+						                         group by commu_num)d
+					 on community.commu_num = d.commu_num
+					 order by community.commu_num desc) c
+			 <include refid="search_"/>
 		)
 		where rnum &gt;= #{start} and rnum &lt;= #{end}
 	</select>
 	
+		
+	
 	<select id="getMyCommuList" parameterType="java.util.HashMap" resultType="community">
 		select * from
 		( select rownum rnum, c.*
-			from (select*from community where member_id= #{member_id} order by commu_num desc) c
+			from (select community.*, nvl(cnt,0) cnt
+			from
+				 community left outer join (select commu_num, count(*) cnt
+					                         from commu_comment
+					                         group by commu_num)d
+				 on community.commu_num = d.commu_num
+				 order by community.commu_num desc) c
+				 
+				 where member_id = #{member_id}
 		)
 		where rnum &gt;= #{start} and rnum &lt;= #{end} 
 	</select>
@@ -138,5 +153,7 @@
 		delete delete_file
 		where commu_img=#{commu_img}
 	</delete>
+	
+
 	
 </mapper>

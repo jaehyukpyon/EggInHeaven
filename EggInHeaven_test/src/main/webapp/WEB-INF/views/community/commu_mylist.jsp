@@ -2,8 +2,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <html>
 <head>
-<%-- <jsp:include page="header.jsp" />
-<script src="../resources/js/list.js"></script> --%>
+<jsp:include page="../mk/header.jsp" />
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/commu_list.css">
  <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/theme.css"> 
 <!-- <link class="cssdeck" rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
@@ -31,14 +30,19 @@ body>h1{font-family: 'Poor Story', cursive;
 	  border-collapse: collapse;
 	  width: 90%;
 	 /*  margin-top: 100px; */
-	  margin-left: 90px
+	  margin-left: 90px;
+	  table-layout:fixed;
+	  word-break:break-all
 	}
 
 	#customers td, #customers th {
 	  /* border: 1px solid #ddd; */
 	  padding: 8px;
 	  text-align: center;
+	  
 	}
+	
+	#customers td{height:66px}
 
 	#customers tr:nth-child(even){background-color: #f2f2f2;}
 
@@ -52,7 +56,7 @@ body>h1{font-family: 'Poor Story', cursive;
 	  color: white;
 	}
 	
-	img{width:50px}
+	img{width:50px; border:solid 1px #ced4da}
 	
 	p{margin-left:810px;
 	  font-size:30;
@@ -60,26 +64,13 @@ body>h1{font-family: 'Poor Story', cursive;
 	  }
 </style>
 
-<title>commu_list</title>
+<title>커뮤니티(내가 쓴 글)</title>
 <script>
 $(function(){
 	$("#write").click(function(){
 		location.href="write";
 	});
-	//검색 클릭 후 응답화면에는 검색시 선택한 필드가 선택되도록 합니다.
-	var selectedValue = '${dropdown}'
-	if (selectedValue != '-1')
-		$("#viewcount").val(selectedValue);
-	
-	//검색 버트을 클릭한 경우
-	$("i").click(function() {
-		//검색어 공백 유효성 검사
-		if($("input").val() == '') {
-			alert("검색어를 입력하세요");
-			$("input").focus();
-			return false;
-		}
-	});
+
 });
 </script>
 	
@@ -91,26 +82,7 @@ $(function(){
 
 <h1>커뮤니티 (내가 쓴 글)</h1> 
 <div class="container">
-<%-- <form action="mylist" method="post">
 
- <div class="wrapper">
-    <div class="search_box">
-        <div class="dropdown" >
-            <div class="default_option" name="dropdown">All</div>  
-            <ul>
-              <li>ALL</li>
-              <li>작성자</li>
-              <li>글제목+글내용</li>
-            </ul>
-        </div>
-        <div class="search_field">
-          <input name="search_word" type="text" class="input" 
-          placeholder="Search" value="${search_word}">
-          <i class="fas fa-search"></i>
-      </div>
-    </div>
- </div> 
-</form> --%>
 <%-- 게시글이 있는 경우 --%>
  <c:if test="${listcount > 0 }"> 
  
@@ -120,34 +92,42 @@ $(function(){
 <table id="customers">
 <thead>
   <tr>
-    <th>번호</th>
-    <th></th>
-    <th colspan="3">제목</th>
-    <th></th>
-    <th >작성자</th>
-    <th>날짜</th>
-    <th>조회수</th>
+    <th width="10%">번호</th>
+    <th  width="10%"></th>
+    <th  width="40%">제목</th>
+    
+    <th  width="10%">작성자</th>
+    <th width="10%">날짜</th>
+    <th  width="10%">조회수</th>
   </tr>
   </thead>
   <tbody>
   <c:set var="num" value="${listcount-(page-1)*limit}"/>
 	 	<c:forEach var="c" items="${commulist}">
   <tr>
-    <td><%--번호 --%>
+    <td  width="10%"><%--번호 --%>
 	 			<c:out value="${num}"/><%-- num 출력 --%>
 	 			<c:set var="num" value="${num-1}"/> <%-- num=num-1; 의미 --%></td>
-    <td><img src="../upload${commudata.commu_img}" alt="파일첨부"></td>
-    
-    <td colspan="3"><%--제목 --%>
+	 
+	 <c:if test="${!empty c.commu_img}">
+	 		<%-- 사진첨부한 경우 --%>			
+    <td  style="width:20%; float:right"><img src="../upload${c.commu_img}" alt="파일첨부"></td>
+    </c:if>
+    <c:if test="${empty c.commu_img}">
+						<%-- 파일첨부 하지 않은 경우 --%>
+						<td></td>
+					</c:if>	
+					
+   <td  width="40%"><%--제목 --%>
     <a href="detail?num=${c.commu_num}">
 	 					<c:out value="${c.commu_subject}"  />
+	 					<span class="gray small" style="color:#007bff; font-weight:bold">&nbsp;(<c:out value="${c.cnt}"/>)</span>
 	 				</a>	
 	 				</td>
-     <td></td>
- 
-    <td>${c.member_id}</td>
-    <td>${c.commu_date}</td>
-    <td>${c.commu_readcount}</td>
+	 				
+     <td  width="10%">${c.member_id}</td>
+    <td  width="10%">${c.commu_date}</td>
+    <td  width="10%">${c.commu_readcount}</td>
   </tr>
  
   
@@ -165,7 +145,7 @@ $(function(){
   </c:if>
   <c:if test="${page > 1 }">
   <li class="page-item">
-  <a href="list?page=${page-1}"&dropdown=${dropdown}&search_word=${search_word}" class="page-link">&laquo;</a>
+  <a href="list?page=${page-1}" class="page-link">&laquo;</a>
   </li>
   </c:if>
   
@@ -177,8 +157,7 @@ $(function(){
 					</c:if>
 					<c:if test="${a != page}">
 					<c:url var="go" value="list">
-								<c:param name="dropdown" value="${dropdown}"/>
-								<c:param name="search_word"  value="${search_word}"/>
+								
 								<c:param name="page" 	     value="${a}"/>
 							</c:url>
 						<li class="page-item">
@@ -194,8 +173,7 @@ $(function(){
   </c:if>
   <c:if test="${page < maxpage }">
   <c:url var="next" value="list">
-							<c:param name="dropdown" value="${dropdown}" />
-							<c:param name="search_word"  value="${search_word}" />
+							
 							<c:param name="page"         value="${page+1}" />
 						</c:url>
 					<li class="page-item">
