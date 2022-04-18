@@ -65,4 +65,6 @@ public interface RecipeMapper {
 
 	public abstract List<RecipeCookImage> getRecipeCookImages(int recipe_num);
 
+
+
 }

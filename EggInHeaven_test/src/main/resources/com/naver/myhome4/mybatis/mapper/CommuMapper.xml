@@ -145,7 +145,7 @@
 				
 	</delete>
 	
-		<select id="getDeleteFileList" resultType="String">
+	<select id="getDeleteFileList" resultType="String">
 		select commu_img from delete_file
 	</select>
 	

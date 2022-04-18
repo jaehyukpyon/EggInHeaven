@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+	
+<mapper namespace="com.naver.myhome4.mybatis.mapper.MkMapper">
+
+<select id="all" resultType="MkView" parameterType="String">
+	select a.*,b.cook_num,b.cook_original,b.cook_db from 
+	recipe a INNER JOIN cook_image b 
+	on a.recipe_num = b.recipe_num
+	ORDER BY recipe_best desc
+</select>
+
+<select id="search" resultType="MkView" parameterType="String">
+	select a.*,b.material_name 
+	from 
+		(select c.recipe_num,c.recipe_title,c.recipe_content,c.recipe_time,c.recipe_best,d.cook_original 
+		from
+		recipe c 
+		INNER JOIN 
+		cook_image d 
+		on c.recipe_num = d.recipe_num) 
+	a
+	inner join
+	material b
+	on a.recipe_num = b.recipe_num 
+	where a.recipe_time &lt;= ${time} and b.material_name = '${material}'
+</select>
+	<!-- http://localhost:8088/myhome4/board/view?recipe_num=1 -->
+
+</mapper>

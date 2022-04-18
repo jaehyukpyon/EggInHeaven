@@ -14,6 +14,7 @@ public interface RecipeService {
 	public abstract int recipeDelete(int recipe_num);
 	
 	// 레시피 내용 보기
-	public abstract Recipe getDetail(int recipe_num); 
+	public abstract Recipe getDetail(int recipe_num);
+
 	
 }
