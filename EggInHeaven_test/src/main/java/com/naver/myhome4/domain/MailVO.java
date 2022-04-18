@@ -4,6 +4,7 @@ import java.io.UnsupportedEncodingException;
 
 import javax.activation.DataSource;
 import javax.mail.MessagingException;
+import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 
 import org.springframework.mail.javamail.JavaMailSender;
@@ -43,6 +44,11 @@ public class MailVO {
 
 	public void send() {
 		mailSender.send(message);
+	}
+
+	public InternetAddress getForm() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

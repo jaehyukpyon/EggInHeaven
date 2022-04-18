@@ -21,15 +21,11 @@ $(document).ready(function(){
 		}
 	});
 	
-	/*$("#upfile").change(function(){
+	$("#upfile").change(function(){
 		console.log($(this).val()) // c:\fakepath\upload.png
 	    var inputfile = $(this).val().split('\\');
 		$('#filevalue').text(inputfile[inputfile.length -1]);
-	});*/
-	
-	
-		/*$("#reset").click(function(){
-			location.href="list";
-		});*/
-
 	});
+	});
+	
+

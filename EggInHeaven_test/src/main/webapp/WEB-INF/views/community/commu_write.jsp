@@ -1,32 +1,25 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"%>
-
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags"%>
 <html>
 <head>
-	<%-- <jsp:include page="header.jsp"/> --%>
+	 <jsp:include page="../mk/header.jsp"/> 
 	<script src="${pageContext.request.contextPath}/resources/js/jquery-3.6.0.js"></script>
 	 <script src="../resources/js/writeform.js" charset="utf-8"></script> 
-<%-- 	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/form.css"> --%>
-	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/bootstrap.css">
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/bootstrap2.css">
 	<link class="cssdeck" rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Poor+Story&display=swap" rel="stylesheet">
 	<style>
-		h1{font-size:2.5rem; text-align:center; font-weight:bold}
+		h1{font-size:2.5rem; text-align:center; font-weight:bold; font-family: 'Poor Story', cursive;}
 		.container{width:60%}
 		label{font-weight:bold}
 		#upfile{display:none}
 		img{width:100px;}
 		button{float:right; margin-left:10px}
-		h5{font-weight:bold}
+		h5{font-weight:bold; font-family: 'Poor Story', cursive;}
 	</style>
-	<script>
-/* 	window.onload = function(){
-	    const commu_img = document.querySelector('#commu_img');
-	    commu_img.style.display = "none";
-	} */
 
-	</script>
 </head>
 <body>
 	<div class="container">
@@ -34,8 +27,11 @@
 	 	<h1>글쓰기 페이지</h1>
 	 	<div class="form-group">
 	 		<label for="member_id">작성자</label>
-	 		<input name="member_id" id="member_id" readOnly value="admin"
-	 			   type="text"	     class="form-control" placeholder="id">
+	 		
+	 		<sec:authentication property="principal" var="pinfo" />
+	    	<input type="text" name="member_id" id="member_id" readOnly value="${pinfo.username }" 
+	    	class="form-control" placeholder="id"/>
+	 		
 	 	</div>
 	 	<div class="form-group">
 	 		<label for="commu_pass">비밀번호</label>
@@ -65,7 +61,7 @@
 	 		
 	 		<input type="file" id="upfile" name="uploadfile">
 	 		<b>사진은 한 장만 등록 가능 >>&nbsp;&nbsp;&nbsp;</b>
-	 		<img src="../resources/image/사진등록.png" alt="파일첨부">
+	 		<span id=filevalue><img src="../resources/image/사진등록.png" alt="파일첨부"></span>
 	 	
 	 		</div>
 	 		

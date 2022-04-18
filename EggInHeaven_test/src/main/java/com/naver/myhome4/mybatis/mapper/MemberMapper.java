@@ -19,4 +19,7 @@ public interface MemberMapper {
 	
 	//새 비밀번호 저장
 	public int newPW(String password, String email, String id) throws Exception;
+	
+	//회원정보 수정
+	public int update(Member m);
 }

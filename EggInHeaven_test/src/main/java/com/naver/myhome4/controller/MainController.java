@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.naver.myhome4.domain.Community;
 import com.naver.myhome4.domain.MainRecipe;
 import com.naver.myhome4.service.MainService;
 
@@ -30,12 +31,12 @@ public class MainController {
 		
 		List<MainRecipe> bestRecipe = mainservice.getBestRec();
 		List<MainRecipe> newRecipe = mainservice.getNewRec();
+		List<Community> commList = mainservice.getNewComm();
 		
 		mv.addObject("bestReclist",bestRecipe);
 		mv.addObject("newReclist",newRecipe);
+		mv.addObject("newCommlist",commList);
 		
-		logger.info("bestRec=" + bestRecipe);
-		logger.info("newRec=" + newRecipe);
 		
 		return mv;
 	}

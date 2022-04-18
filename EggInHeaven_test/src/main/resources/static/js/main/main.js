@@ -1,5 +1,5 @@
 	$(function() {
-		
+		/*
 		function bestRecipe(){
 			
 			$.ajax({
@@ -12,6 +12,8 @@
 				}
 				
 			})//ajax_end
-		}
+		}*/
+		
+		
 		
 	})

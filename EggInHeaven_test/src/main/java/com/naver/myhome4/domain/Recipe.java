@@ -11,6 +11,7 @@ public class Recipe {
 	private int recipe_readcount;
 	private int recipe_best;
 	private Date recipe_date;
+	
 
 	public int getRecipe_num() {
 		return recipe_num;
