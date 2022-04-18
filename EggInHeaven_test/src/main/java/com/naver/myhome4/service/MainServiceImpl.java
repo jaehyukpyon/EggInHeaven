@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.naver.myhome4.domain.Community;
 import com.naver.myhome4.domain.MainRecipe;
 
 
@@ -16,16 +17,22 @@ public class MainServiceImpl implements MainService{
 
 	@Override
 	public List<MainRecipe> getBestRec() {
-		List<MainRecipe> best_Rec_List = dao.getBestRec();
 		
-		return best_Rec_List;
+		return dao.getBestRec();
 	}
 
 	
 	@Override
 	public List<MainRecipe> getNewRec() {
-		List<MainRecipe> new_Rec_List = dao.getNewRec();
-		return new_Rec_List;
+
+		return dao.getNewRec();
+	}
+
+
+	@Override
+	public List<Community> getNewComm() {
+		
+		return dao.getNewComm();
 	}
 
 }

@@ -111,7 +111,7 @@ span{
 			
 			<div class="col-md-4">
 				<button class="btn btn-primary mr-2" type="button">PW</button>
-				<input class="form-control" type="text"
+				<input class="form-control" type="text" id="check"
 				placeholder="비밀번호를 한번 더 입력하세요." required><br>
 				<span id="message_pw"></span>
 			</div>
