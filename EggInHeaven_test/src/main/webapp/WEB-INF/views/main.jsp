@@ -44,7 +44,7 @@
 	width: 70%;
 	position: absolute;
 	left: 50%;
-	top: 120%;
+	margin-top: 70%;
 	transform: translate(-50%, -50%);
 }
 
@@ -82,7 +82,7 @@ h1 {
 	z-index: 1;
 	width: 70%;
 	left: 50%;
-	top: 25%;
+	top: 50%;
 	transform: translate(-50%, -50%);
 	text-align: center;
 	color:white; 
@@ -94,11 +94,33 @@ h1 {
 }
 </style>
 
+<script>
+$(function() {
+	
+	$(".content").each(function (index, item) {
+		var cont = $(item).text().substring(0,40)
 
+
+		if(cont.length >= 40)
+			cont += "..."
+
+		$(item).text(cont);
+
+	})
+	
+	
+	
+})
+	
+	if("${result}"=="updateSuccess"){
+		alert("회원정보 수정 완료");
+	}
+	
+</script>
 
 </head>
 <body>
-
+	<jsp:include page="./mk/header.jsp" />
 
 	<div class="logo">
 		<img class="image-thumbnail" id="random"
@@ -115,7 +137,9 @@ h1 {
 		<div class="inner-con">
 			<div class="title">
 				<h1>인기 레시피 TOP 10</h1>
+				<a href="${pageContext.request.contextPath}/board/list">
 				<button class="all btn btn-dark">더보기</button>
+				</a>
 			</div>
 			<div class="swiper-container">
 
@@ -123,8 +147,10 @@ h1 {
 					<c:forEach var="r" items="${bestReclist}">
 						<div class="swiper-slide">
 							<div>
+								<a href="${pageContext.request.contextPath}/board/view?num=${r.recipe_num}">
 								<img
-									src="${pageContext.request.contextPath}/resources/cookupload${r.cook_db}" />
+									src="${pageContext.request.contextPath}/cook${r.cook_db}" />
+								</a>
 							</div>
 						</div>
 					</c:forEach>
@@ -145,7 +171,9 @@ h1 {
 		<div class="inner-con">
 			<div class="title">
 				<h1>최신 레시피</h1>
+				<a href="${pageContext.request.contextPath}/board/list">
 				<button class="all btn btn-dark">더보기</button>
+				</a>
 			</div>
 			<div class="swiper-container">
 
@@ -153,9 +181,11 @@ h1 {
 					<c:forEach var="r" items="${newReclist}">
 						<div class="swiper-slide">
 							<div>
+							<a href="${pageContext.request.contextPath}/board/view?num=${r.recipe_num}">
 								<img
-									src="${pageContext.request.contextPath}/resources/cookupload${r.cook_db}" />
+									src="${pageContext.request.contextPath}/cook${r.cook_db}" />
 								<span class="badge badge-primary">new</span>
+							</a>
 							</div>
 						</div>
 					</c:forEach>
@@ -177,32 +207,32 @@ h1 {
 		<div class="inner-con">
 			<div class="title">
 				<h1>커뮤니티 최신글</h1>
+				<a href="${pageContext.request.contextPath}/community/list">
 				<button class="all btn btn-dark">더보기</button>
+				</a>
 			</div>
 			<div>
 				<div class="table-responsive">
-					<table class="table table-hover table-sm">
+					<table class="table table-hover table-sm" id="commu">
 						<tbody>
 							<tr>
-								<th class="w-25">Location</th>
-								<th class="w-50">Date</th>
-								<th class="w-25">Visits</th>
+								<th class="w-25">제목</th>
+								<th class="w-50">본문</th>
+								<th class="w-15">조회수</th>
+								<th class="w-15">작성일</th>
 							</tr>
-							<tr>
-								<td>Westfield</td>
-								<td>08.05.18 <span class="badge badge-primary">new</span></td>
-								<td>2323</td>
-							</tr>
-							<tr>
-								<td>Galway</td>
-								<td>08.05.18 <span class="badge badge-pill badge-primary">new</span></td>
-								<td>5362</td>
-							</tr>
-							<tr class="table-primary">
-								<td>Bern</td>
-								<td>08.05.18</td>
-								<td>153</td>
-							</tr>
+							<c:forEach var="c" items="${newCommlist}">
+								
+									<tr onclick="location.href=
+									'${pageContext.request.contextPath}/community/detail?num=${c.commu_num}'" 
+									style="cursor:hand">
+										<td>${c.commu_subject} <span class="badge badge-pill badge-primary">new</span></td>
+										<td class="content">${c.commu_content} </td>
+										<td>${c.commu_readcount}</td>
+										<td>${c.commu_date}</td>
+									</tr>
+								
+							</c:forEach>
 						</tbody>
 					</table>
 				</div>
@@ -236,10 +266,12 @@ h1 {
 				prevEl : ".swiper-button-prev", // 이번 버튼 클래스명
 			},
 		});
+		
+		
+
 	</script>
 	<script
-		src="${pageContext.request.contextPath}/resources/js/main/main_img.js">
-		
+		src="${pageContext.request.contextPath}/resources/js/main/main_img.js">		
 	</script>
 
 

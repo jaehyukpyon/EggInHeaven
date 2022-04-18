@@ -21,11 +21,12 @@
 			        from
 			            recipe rec, cook_image img
 			        where rec.recipe_num = img.recipe_num 
+			        order by recipe_best desc
 			        ) r
 			    where r.n = 1
 			    )
 			where rnum >= 1 and rnum <= 10
-			order by recipe_best desc
+			
 		]]>
 	</select>
 	
@@ -42,15 +43,30 @@
 			        from
 			            recipe rec, cook_image img
 			        where rec.recipe_num = img.recipe_num 
+			        order by recipe_date desc
 			        ) r
 			    where r.n = 1
 			    )
 			where rnum >= 1 and rnum <= 10
-			order by recipe_date desc
+			
 		]]>
 	</select>
 
 
+	<select id="getNewComm" resultType="com.naver.myhome4.domain.Community">
+		<![CDATA[
+			select *
+			from(
+			    select rownum rnum, c.*
+			    from (
+				        select *
+				        from community
+				        order by commu_date desc
+			    			) c
+					)
+			where rnum >= 1 and rnum <= 5
+		]]>
+	</select>
 	
 
 
