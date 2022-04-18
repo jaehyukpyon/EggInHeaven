@@ -6,6 +6,7 @@ import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry
 import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
+import com.naver.myhome4.domain.JayPath;
 import com.naver.myhome4.domain.MySaveFolder;
 import com.naver.myhome4.domain.MySaveFolder2;
 
@@ -13,12 +14,15 @@ import com.naver.myhome4.domain.MySaveFolder2;
 public class WebMvcConfig implements WebMvcConfigurer {
 
 	@Autowired
-	   private MySaveFolder2 mysavefolder;
+	private MySaveFolder2 mysavefolder;
+	
+	@Autowired
+	private JayPath jayPath;
 	
 	@Override
 	public void addViewControllers(ViewControllerRegistry registry) {
 		// url mapping "/"로 접속하면 "/member/login"으로 이동
-		//registry.addViewController("/").setViewName("forward:/member/login");
+		registry.addViewController("/").setViewName("forward:/member/login");
 	}
 	
 	@Override
@@ -27,6 +31,9 @@ public class WebMvcConfig implements WebMvcConfigurer {
 		 registry.addResourceHandler("/resources/**").addResourceLocations("classpath:/static/");
 	        registry.addResourceHandler("/upload/**").addResourceLocations(mysavefolder.getSavepath());
 	        //.addResourceLocations("file:///C:/upload/");
+	        
+	        registry.addResourceHandler("/jayStep/**").addResourceLocations(jayPath.getStepPath());
+			registry.addResourceHandler("/jayCook/**").addResourceLocations(jayPath.getCookPath());
 	    }
 	
 }

@@ -22,12 +22,12 @@
 		<nav class="navbar navbar-expand-md navbar-dark bg-primary mb-2">
 			<div class="collapse navbar-collapse justify-content-center" id="navbarColor02">
 				<ul class="navbar-nav">					
-					<li class="nav-item"><a class="nav-link" href="2">[레시피]</a></li>
-					<li class="nav-item"><a class="nav-link" href="3">[상세검색]</a></li>
-					<li class="nav-item"><a class="nav-link" href="#">[랭킹]</a></li>
-					<li class="nav-item"><a class="nav-link" href="#">[커뮤니티]</a></li>
-					<li class="nav-item"><a class="nav-link" href="#">[내 레시피 등록]</a></li>
-					<li class="nav-item"><a class="nav-link" href="#">[마이 페이지]</a>
+						<li class="nav-item"><a class="nav-link" href="2">[레시피]</a></li>
+						<li class="nav-item"><a class="nav-link" href="3">[상세검색]</a></li>
+						<li class="nav-item"><a class="nav-link" href="#">[랭킹]</a></li>
+						<li class="nav-item"><a class="nav-link" href="#">[커뮤니티]</a></li>
+						<li class="nav-item"><a class="nav-link" href="#">[내 레시피 등록]</a></li>
+						<li class="nav-item"><a class="nav-link" href="#">[마이 페이지]</a>
 					</li>
 				</ul>
 			</div>
