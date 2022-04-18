@@ -7,7 +7,10 @@
 <link rel="stylesheet"href="${pageContext.request.contextPath}/resources/css/hootstrap.css">
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script src="//code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-<script src="${pageContext.request.contextPath}/resources/js/checkbox.js"></script>
+<script src="${pageContext.request.contextPath}/resources/js/MK.js"></script>
+<script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+<link rel="stylesheet"href="https://unpkg.com/swiper/swiper-bundle.min.css"/>
+
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <jsp:include page="header.jsp" />
@@ -79,96 +82,96 @@ min-width: 768px}
 </head>
 <body>
 <div class="container">
-	<form id="formData" name="2" action="2">	
+	<form id="formData" name="detailSearchList" action="detailSearchList">	
 	<div class="parent">
 			<div class="dropdown">
-				<button class="dropbtn btn btn-primary btn-block btn btn-primary btn-block btn btn-primary btn-block" name="milk" value="유제품">유제품</button>
+				<button class="dropbtn btn btn-primary btn-block btn btn-primary btn-block btn btn-primary btn-block" name="4" value="유제품">유제품</button>
 				<div class="dropdown-content">
 					<div >
-						우유 <input type="checkbox" name="milk" value="우유" class="ckbox">
+						우유 <input type="checkbox" name="4" value="우유" class="ckbox">
 					</div>
 					<div >
-						버터 <input type="checkbox" name="milk" value="버터" class="ckbox">
+						버터 <input type="checkbox" name="4" value="버터" class="ckbox">
 					</div>
 					<div >
-						치즈 <input type="checkbox" name="milk" value="치즈" class="ckbox">
+						치즈 <input type="checkbox" name="4" value="치즈" class="ckbox">
 					</div>
 					<div >
-						생크림<input type="checkbox" name="milk" value="생크림" class="ckbox">
+						생크림<input type="checkbox" name="4" value="생크림" class="ckbox">
 					</div>
 					<div >
-						요거트 <input type="checkbox" name="milk" value="요거트" class="ckbox">
+						요거트 <input type="checkbox" name="4" value="요거트" class="ckbox">
 					</div>
 				</div>
 			</div>
 			<div class="dropdown">
-				<button class="dropbtn btn btn-primary btn-block btn btn-primary btn-block" name="meat">육류</button>
+				<button class="dropbtn btn btn-primary btn-block btn btn-primary btn-block" name="1">육류</button>
 				<div class="dropdown-content">
 					<div >
-						돼지고기 <input type="checkbox" name="meat" value="돼지고기" class="ckbox">
+						돼지고기 <input type="checkbox" name="1" value="돼지고기" class="ckbox">
 					</div>
 					<div >
-						소고기 <input type="checkbox" name="meat" value="소고기" class="ckbox">
+						소고기 <input type="checkbox" name="1" value="소고기" class="ckbox">
 					</div>
 					<div >
-						닭고기 <input type="checkbox" name="meat" value="닭고기" class="ckbox">
+						닭고기 <input type="checkbox" name="1" value="닭고기" class="ckbox">
 					</div>
 					<div >
-						오리고기<input type="checkbox" name="meat" value="오리고기" class="ckbox">
+						오리고기<input type="checkbox" name="1" value="오리고기" class="ckbox">
 					</div>
 					<div >
-						가공육 <input type="checkbox" name="meat" value="가공육" class="ckbox">
+						가공육 <input type="checkbox" name="1" value="가공육" class="ckbox">
 					</div>
 				</div>
 			</div>
 			<div class="dropdown">
-				<button class="dropbtn btn btn-primary btn-block" name="vegetable">채소류</button>
+				<button class="dropbtn btn btn-primary btn-block" name="3">채소류</button>
 				<div class="dropdown-content">
 					<div >
-						당근 <input type="checkbox" name= "vegetable" value="당근"class="ckbox">
+						당근 <input type="checkbox" name= "3" value="당근"class="ckbox">
 					</div>
 					<div >
-						양파 <input type="checkbox" name= "vegetable" value="양파"class="ckbox">
+						양파 <input type="checkbox" name= "3" value="양파"class="ckbox">
 					</div>
 					<div >
-						파 <input type="checkbox" name= "vegetable" value="파" class="ckbox">
+						파 <input type="checkbox" name= "3" value="파" class="ckbox">
 					</div>
 					<div >
-						시금치<input type="checkbox" name= "vegetable" value="시금치" class="ckbox">
+						시금치<input type="checkbox" name= "3" value="시금치" class="ckbox">
 					</div>
 					<div >
-						콩나물 <input type="checkbox" name= "vegetable" value="콩나물" class="ckbox">
+						콩나물 <input type="checkbox" name= "3" value="콩나물" class="ckbox">
 					</div>
 				</div>
 			</div>
 			<div class="dropdown">
-				<button class="dropbtn btn btn-primary btn-block" name="serial">곡 류</button>
+				<button class="dropbtn btn btn-primary btn-block" name="5">곡 류</button>
 				<div class="dropdown-content">
 					<div >
-						밀가루 <input type="checkbox" name="serial" value="밀가루"class="ckbox">
+						밀가루 <input type="checkbox" name="5" value="밀가루"class="ckbox">
 					</div>
 					<div >
-						쌀 <input type="checkbox" name="serial" value="쌀" class="ckbox">
+						쌀 <input type="checkbox" name="5" value="쌀" class="ckbox">
 					</div>
 					<div >
-						옥수수 <input type="checkbox" name="serial" value="옥수수" class="ckbox">
+						옥수수 <input type="checkbox" name="5" value="옥수수" class="ckbox">
 					</div>
 					<div >
-						보리<input type="checkbox" name="serial" value="보리" class="ckbox">
+						보리<input type="checkbox" name="5" value="보리" class="ckbox">
 					</div>
 					<div >
-						콩 <input type="checkbox" name="serial" value="콩" class="ckbox">
+						콩 <input type="checkbox" name="5" value="콩" class="ckbox">
 					</div>
 				</div>
 			</div>
 			<div class="dropdown">
-				<button class="dropbtn btn btn-primary btn-block" name="seafood">해산물</button>
+				<button class="dropbtn btn btn-primary btn-block" name="2">해산물</button>
 				<div class="dropdown-content">
 					<div >
-						조개류 <input type="checkbox" name="seafood" value ="조개류" class="ckbox">
+						조개류 <input type="checkbox" name="2" value ="조개류" class="ckbox">
 					</div>
 					<div >
-						생선류 <input type="checkbox" name="seafood" value="생선류" class="ckbox">
+						생선류 <input type="checkbox" name="2" value="생선류" class="ckbox">
 					</div>					
 				</div>
 			</div>
@@ -201,9 +204,9 @@ min-width: 768px}
 	</form>
 	
 	
-	<div id="recipe" style="border: solid; display: flex;">  
+	<div id="recipe" style="border: solid; display: flex; overflow: hidden;">  
 	<br>
-	<br>	 
+	<br>	 	
 	<br>
 	<br>
 	</div>  

@@ -1,14 +1,11 @@
 $(function() {
 
 	// 기본 레시피 뿌려주기
-	$("#recipe").load("2");
+	$("#recipe").load("detailSearchList");
 
 	// 전체 선택 전체 해제
-	$('.dropbtn')
-			.on(
-					'click',
-					function(e) {
-						e.preventDefault();
+	$('.dropbtn').on('click',function(e) {
+					e.preventDefault();
 						var name = $(this).attr('name');
 						var total = $("input[name=" + name + "]").length;
 						var checked = $("input[name=" + name + "]:checked").length;
@@ -74,16 +71,16 @@ $(function() {
 
 	// 총 선택된 갯수
 	function count() {
-		var milk = $("input:checkbox[name='milk']:checked").length;
-		var meat = $("input:checkbox[name='meat']:checked").length;
-		var vegetable = $("input:checkbox[name='vegetable']:checked").length;
-		var serial = $("input:checkbox[name='serial']:checked").length;
-		var seefood = $("input:checkbox[name='seafood']:checked").length;
+		var milk = $("input:checkbox[name='4']:checked").length;
+		var meat = $("input:checkbox[name='1']:checked").length;
+		var vegetable = $("input:checkbox[name='3']:checked").length;
+		var serial = $("input:checkbox[name='5']:checked").length;
+		var seefood = $("input:checkbox[name='2']:checked").length;
 		var count = milk + meat + vegetable + serial + seefood;
 		$('#count').text(count);
 	}
 
-	$('#sub').on("click", function() {
+		$('#sub').on("click", function() {
 		var id = $.map($('.add'), function(name) {
 			return $(name).attr("id");
 		})
@@ -146,7 +143,31 @@ $(function() {
 		$("#time").val(time);
 		$('#progress-bar').width(time);	
 	}
+
+	$(document).on('click', '#allCancel', function() {
+		$(".add").remove();	
+		$(".ckbox").prop("checked", false);
+		$("#search").children().remove();
+		$("#search").text("검색한 목록이 표시됩니다.");
+		count();
+	})
 	
+	$(document).on('click', '.qwe img', function() {
+		alert($(this).attr("id"));
+		// $(this).attr("id") 이동
+	})
+	
+	
+	//누르고 있는 상태로 수정해야함.
+	$(document).on('click', '.le', function() {
+		var _scrollX = $('.test').scrollLeft();
+		 $('.test').scrollLeft(_scrollX - 100);
+	})
+	
+	$(document).on('click', '.ri', function() {		
+		var _scrollX = $('.test').scrollLeft();
+		 $('.test').scrollLeft(_scrollX + 100);
+	})
 
-
+	
 })

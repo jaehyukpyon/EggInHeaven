@@ -46,4 +46,6 @@ public interface RecipeMapper {
 
 	public abstract List<CategoryRecipeView> getCategories(int num);
 
+
+
 }
