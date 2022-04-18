@@ -48,7 +48,9 @@ public class MemberServiceImpl implements MemberService {
 				m.getEmail() + "&key=" + key + "&id=" + m.getId() +
 				"' target='_blenk'>이메일 인증 확인</a>"
 			);
-		sendMail.setFrom("fpdl1gkgk@naver.com", "egg in heaven");
+
+		sendMail.setFrom("", "egg in heaven");
+
 		sendMail.setTo(m.getEmail());
 		sendMail.send();
 		
@@ -113,17 +115,13 @@ public class MemberServiceImpl implements MemberService {
 						"<br/>로그인 후 비밀번호 변경을 해주세요."+
 						"<a href='http://localhost:8088/myhome4/member/login"+
 						">로그인 페이지</a>");
-		sendMail.setFrom("fpdl1gkgk@naver.com", "egg in heaven");
+
+		sendMail.setFrom("", "egg in heaven");
+
 		sendMail.setTo(m.getEmail());
 		sendMail.send();
 		
 		return result;
-	}
-
-
-
-
-
-	
+	}	
 	
 }

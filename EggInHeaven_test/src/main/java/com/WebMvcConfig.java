@@ -10,27 +10,32 @@ import com.naver.myhome4.domain.CookSaveFolder;
 import com.naver.myhome4.domain.MySaveFolder2;
 import com.naver.myhome4.domain.ProfileSaveFolder;
 import com.naver.myhome4.domain.StepSaveFolder;
+import com.naver.myhome4.domain.JayPath;
+import com.naver.myhome4.domain.MySaveFolder;
 
 @Configuration
 public class WebMvcConfig implements WebMvcConfigurer {
 
 	@Autowired
-	   private MySaveFolder2 mysavefolder;
+	private MySaveFolder2 mysavefolder;
 	
 	@Autowired
-	   private CookSaveFolder cooksavefolder;
+	private CookSaveFolder cooksavefolder;
 	
 	@Autowired
-	   private StepSaveFolder stepsavefolder;
+	private StepSaveFolder stepsavefolder;
 	
 	@Autowired
-	   private ProfileSaveFolder profilesavefolder;
+	private ProfileSaveFolder profilesavefolder;
+  
+  @Autowired
+	private JayPath jayPath;
 	
 	
 	@Override
 	public void addViewControllers(ViewControllerRegistry registry) {
 		// url mapping "/"로 접속하면 "/member/login"으로 이동
-		//registry.addViewController("/").setViewName("forward:/member/login");
+		registry.addViewController("/").setViewName("forward:/member/login");
 	}
 	
 	@Override
@@ -45,6 +50,10 @@ public class WebMvcConfig implements WebMvcConfigurer {
 	     	.addResourceLocations(stepsavefolder.getStepsavepath());
 	     registry.addResourceHandler("/profile/**")
 	     	.addResourceLocations(profilesavefolder.getProfilesavepath());
+    
+    
+    registry.addResourceHandler("/jayStep/**").addResourceLocations(jayPath.getStepPath());
+		registry.addResourceHandler("/jayCook/**").addResourceLocations(jayPath.getCookPath());
 	}
 	
 }

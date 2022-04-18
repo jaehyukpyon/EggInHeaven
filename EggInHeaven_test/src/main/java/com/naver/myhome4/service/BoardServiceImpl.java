@@ -5,9 +5,15 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.naver.myhome4.domain.Category;
 import com.naver.myhome4.domain.CategoryRecipeView;
+import com.naver.myhome4.domain.Details;
 import com.naver.myhome4.domain.Material;
 import com.naver.myhome4.domain.Recipe;
+import com.naver.myhome4.domain.RecipeCookImage;
+import com.naver.myhome4.domain.RecipeMaterial;
+import com.naver.myhome4.domain.RecipeSauce;
+import com.naver.myhome4.domain.RecipeStep;
 import com.naver.myhome4.domain.Sauce;
 import com.naver.myhome4.mybatis.mapper.RecipeMapper;
 
@@ -23,14 +29,19 @@ public class BoardServiceImpl implements BoardService {
 	}
 	
 	@Override
-	public List<Sauce> getSauce(int num) {
+	public List<RecipeSauce> getSauce(int num) {
 		return dao.getSauce(num);
 	}
 	
 	@Override
-	public List<Material> getMaterial(int num) {
+	public List<RecipeMaterial> getMaterial(int num) {
 		return dao.getMaterial(num);
-	}	
+	}
+	
+	@Override
+	public List<Category> getCategory(int num) {
+		return dao.getCategory(num);
+	}
 	
 	@Override
 	public int isAddedToLikeListTable(String member_id, int recipe_num) {
@@ -82,6 +93,31 @@ public class BoardServiceImpl implements BoardService {
 	@Override
 	public List<CategoryRecipeView> getCategories(int num) {
 		return dao.getCategories(num);
+	}
+	
+	@Override
+	public List<Recipe> getListWithPaging(Details det) {
+		return dao.getListWithPaging(det);
+	}
+	
+	@Override
+	public int getTotalCount(Details det) {
+		return dao.getTotalCount(det);
+	}
+	
+	@Override
+	public List<Recipe> getListWithPagingBestest(Details det) {
+		return dao.getListWithPagingBestest(det);
+	}
+	
+	@Override
+	public List<RecipeStep> getRecipeSteps(int recipe_num) {
+		return dao.getRecipeSteps(recipe_num);
+	}
+	
+	@Override
+	public List<RecipeCookImage> getRecipeCookImages(int recipe_num) {
+		return dao.getRecipeCookImages(recipe_num);
 	}
 
 }
