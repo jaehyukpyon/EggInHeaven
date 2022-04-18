@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -124,11 +125,13 @@
 </head>
 <body>
 
+	<jsp:include page="../mk/header.jsp" />
+
 	<div class="container">
 	
 		<%--요리 완성 이미지 슬라이드쇼 부분 --%>
 		<div class="slideshow-container" style="position: relative;">
-	        <div class="mySlides">
+	        <%-- <div class="mySlides">
 	            <div class="numbertext">1 / 4</div>
 	            <img id="img-slide" src="${pageContext.request.contextPath }/resources/image/slide/pasta1.jpg" style="width:100%">
 	            <div class="text">첫 번째 완성 이미지</div>
@@ -147,9 +150,25 @@
 	            <div class="numbertext">4 / 4</div>
 	            <img id="img-slide" src="${pageContext.request.contextPath }/resources/image/slide/pasta4.jpg" style="width:100%">
 	            <div class="text">네 번째 완성 이미지</div>
-	        </div>	
-	        <a class="prev" onclick="plusSlides(-1)">❮</a>
-	        <a class="next" onclick="plusSlides(1)">❯</a>	
+	        </div> --%>	
+	        
+	        <c:forEach var="cookImage" items="${cookImages }" varStatus="status">
+	        	<div class="mySlides">
+		            <div class="numbertext"><c:out value="${status.index + 1 }" /> / 4</div>
+		            <img id="img-slide" src="/myhome4/jayCook${cookImage.cook_db }" style="width:100%">
+		            <c:choose>
+		            	<c:when test="${status.index eq 0 }"><div class="text">첫 번째 완성 이미지</div></c:when>
+		            	<c:when test="${status.index eq 1 }"><div class="text">두 번째 완성 이미지</div></c:when>
+		            	<c:when test="${status.index eq 2 }"><div class="text">세 번째 완성 이미지</div></c:when>
+		            	<c:when test="${status.index eq 3 }"><div class="text">네 번째 완성 이미지</div></c:when>
+		            </c:choose>
+	        	</div>
+	        </c:forEach>
+	        
+	        <c:if test="${fn:length(cookImages) > 1 }">
+		        <a class="prev" onclick="plusSlides(-1)">❮</a>
+		        <a class="next" onclick="plusSlides(1)">❯</a>
+	        </c:if>	
 	    </div>
 	    <br />
 	    
@@ -266,10 +285,16 @@
 		    	<div id="horizontal-center-align">
 		    		<h5><b>필요 재료 리스트</b></h5>
 		    		<div>
-		    			<c:forEach var="material" items="${materials }" varStatus="status">
+		    			<c:forEach var="materialName" items="${materialNameSplits }" varStatus="status">
 		    				<span style="margin-right: 70px;">
-		    					<c:out value="${status.index + 1 }" />. <c:out value="${material.material_name }" /></span><span><c:out value="${material.material_amount }" />
-		    				</span> <br />
+		    					<c:out value="${status.index + 1 }" />. <c:out value="${fn:trim(materialName) }" />
+		    				</span>
+		    				<span>
+		    					<c:forEach var="materialAmount" items="${materialAmountSplits[status.index] }">
+		    						<c:out value="${fn:trim(materialAmount) }" />
+		    					</c:forEach>
+		    				</span>
+		    				<br />
 		    			</c:forEach>
 		    		</div>
 		    	</div>
@@ -281,10 +306,16 @@
 		    	<div id="horizontal-center-align">
 		    		<h5><b>필요 양념 리스트</b></h5>		    		
 		    		<div>
-		    			<c:forEach var="sauce" items="${sauces }" varStatus="status">
+		    			<c:forEach var="sauceName" items="${sauceNameSplits }" varStatus="status">
 		    				<span style="margin-right: 70px;">
-		    					<c:out value="${status.index + 1 }" />. <c:out value="${sauce.sauce_name }" /></span><span><c:out value="${sauce.sauce_amount }" />
-		    				</span> <br />
+		    					<c:out value="${status.index + 1 }" />. <c:out value="${fn:trim(sauceName) }" />
+		    				</span>
+		    				<span>
+		    					<c:forEach var="sauceAmount" items="${sauceAmountSplits[status.index] }">
+		    						<c:out value="${fn:trim(sauceAmount) }" />
+		    					</c:forEach>
+		    				</span>
+		    				<br />
 		    			</c:forEach>
 		    		</div>
 		    	</div>
@@ -302,33 +333,30 @@
 						<th><span class="badge badge-primary" style="font-size: 1rem;">설명</span></th>
 					</tr>
 				</thead>
-				<tbody>
-					<tr>
-						<td><span class="badge badge-pill badge-primary" style="font-size: 1rem;">1</span></td>
-						<td><img src="${pageContext.request.contextPath }/resources/image/step/step1.jpg" width="100%"></td>
-						<td>내용</td>
-					</tr>
-					<tr>
-						<td><span class="badge badge-pill badge-primary" style="font-size: 1rem;">2</span></td>
-						<td><img src="${pageContext.request.contextPath }/resources/image/step/step2.jpg" width="100%"></td>
-						<td>내용</td>
-					</tr>
-					<tr>
-						<td><span class="badge badge-pill badge-primary" style="font-size: 1rem;">3</span></td>
-						<td><img src="${pageContext.request.contextPath }/resources/image/step/step3.jpg" width="100%"></td>
-						<td>내용</td>
-					</tr>
-					<tr>
-						<td><span class="badge badge-pill badge-primary" style="font-size: 1rem;">4</span></td>
-						<td><img src="${pageContext.request.contextPath }/resources/image/step/step4.jpg" width="100%"></td>
-						<td>내용</td>
-					</tr>
+				<tbody>					 
+					 <c:forEach var="step" items="${recipeSteps }" varStatus="status">
+					 	<tr>
+					 		<td><span class="badge badge-pill badge-primary" style="font-size: 1rem;"><c:out value="${status.count }" /></span></td>
+					 		<td><img src="${pageContext.request.contextPath }/jayStep${step.step_db }" width="100%"></td>
+					 		<%-- <td><img src="${pageContext.request.contextPath }/jayStep/2022-4-15/step1.jpg" width="100%"></td> --%>
+					 		<td><c:out value="${step.step_content }" /></td>
+					 	</tr>
+					 </c:forEach>
 				</tbody>
 			</table>
 		</div>
 
-	</div>
-	<%--div.container ends --%>	
+	</div>	
+	<%--div.container ends --%>
+	
+	<sec:authorize access="isAuthenticated()">	
+		<div class="container" style="margin-bottom: 20px;">
+			<div>
+				<button class="btn btn-success float-right" style="margin-left: 10px;">삭제하기</button>
+				<button class="btn btn-secondary float-right">수정하기</button>
+			</div>
+		</div>	
+	</sec:authorize>
 	
 	
 	<div class="container" id="comments-container" style="margin-bottom: 100px;">

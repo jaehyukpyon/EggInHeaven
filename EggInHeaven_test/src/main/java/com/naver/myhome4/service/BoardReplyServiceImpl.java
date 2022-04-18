@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.naver.myhome4.domain.BoardReply;
-import com.naver.myhome4.domain.Criteria;
+import com.naver.myhome4.domain.Details;
 import com.naver.myhome4.mybatis.mapper.BoardReplyMapper;
 
 @Service
@@ -16,7 +16,7 @@ public class BoardReplyServiceImpl implements BoardReplyService {
 	private BoardReplyMapper mapper;
 
 	@Override
-	public List<BoardReply> getList(Criteria cri, int recipe_num) {
+	public List<BoardReply> getList(Details cri, int recipe_num) {
 		return mapper.getList(cri, recipe_num);
 	}
 	

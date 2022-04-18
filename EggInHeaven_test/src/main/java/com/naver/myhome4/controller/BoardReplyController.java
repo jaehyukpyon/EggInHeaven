@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.naver.myhome4.domain.BoardReply;
-import com.naver.myhome4.domain.Criteria;
+import com.naver.myhome4.domain.Details;
 import com.naver.myhome4.service.BoardReplyService;
 
 @RestController
@@ -33,7 +33,7 @@ public class BoardReplyController {
 	@GetMapping(value = "/pages/{recipe_num}/{page}", produces = { MediaType.APPLICATION_JSON_VALUE })
 	public ResponseEntity<List<BoardReply>> getList(@PathVariable("recipe_num") int recipe_num, @PathVariable("page") int page) {
 		
-		Criteria cri = new Criteria(page, 10);
+		Details cri = new Details(page, 10);
 		
 		return new ResponseEntity<List<BoardReply>>(service.getList(cri, recipe_num), HttpStatus.OK);
 	}
