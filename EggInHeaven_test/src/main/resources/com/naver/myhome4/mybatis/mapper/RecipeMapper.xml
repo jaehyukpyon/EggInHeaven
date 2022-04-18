@@ -4,6 +4,32 @@
 	
 <mapper namespace="com.naver.myhome4.mybatis.mapper.RecipeMapper">
 	
+	<!-- 신호준 -->
+	<insert id="insertRecipe" parameterType="recipe">
+		<selectKey resultType="int"      order="BEFORE" 
+	                keyProperty="recipe_num">
+	      select nvl(max(recipe_num) + 1, 0) from recipe 
+	    </selectKey>
+		INSERT
+		INTO RECIPE
+		VALUES(#{recipe_num},#{member_id},#{recipe_title},#{recipe_content},
+		#{recipe_time},#{recipe_readcount},#{recipe_best},SYSDATE)
+	</insert>
+	
+	<delete id="recipeDelete">
+ 			delete from recipe
+   			 where r_num=#{recipe_num}
+	</delete>
+
+	<update id="recipeModify" parameterType="recipe">
+		UPDATE recipe
+		SET recipe_title = #{recipe_title}, 
+			recipe_content = #{recipe_content}, 
+			recipe_time = #{recipe_time}
+		WHERE recipe_num=#{recipe_num}
+	</update>
+	
+	<!-- 변재혁 -->
 	<select id="getDetail" resultType="recipe">
 		select *
 		from recipe

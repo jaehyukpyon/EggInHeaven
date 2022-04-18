@@ -20,10 +20,10 @@ public interface RecipeMapper {
 	public abstract void insertRecipe(Recipe recipe);
 		
 	//레시피 수정
-	public abstract int recipeModify(Recipe modifyrecipe);
+	public abstract int recipeModify(Recipe recipemodify);
 		
 	//레시피 삭제
-	public abstract int recipeDelete(int recipe_num);
+	public abstract int recipeDelete(int num);
   
   
 	// 변재혁.

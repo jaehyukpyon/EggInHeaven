@@ -51,6 +51,7 @@ public class MemberServiceImpl implements MemberService {
 
 		sendMail.setFrom("", "egg in heaven");
 
+
 		sendMail.setTo(m.getEmail());
 		sendMail.send();
 		
