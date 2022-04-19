@@ -5,10 +5,17 @@
 <mapper namespace="com.naver.myhome4.mybatis.mapper.MkMapper">
 
 <select id="all" resultType="MkView" parameterType="String">
-	select a.*,b.cook_num,b.cook_db,b.cook_db from 
-	recipe a INNER JOIN cook_image b 
-	on a.recipe_num = b.recipe_num
-	ORDER BY recipe_best desc
+    select c.*,d.cook_num,d.cook_db from 
+    recipe c
+    inner join    
+    (select a.* from
+    cook_image a
+    inner join
+    (select recipe_num,min(cook_num) min
+    from cook_image 
+    group by recipe_num) b
+    on a.cook_num =  b.min) d
+    on c.recipe_num = d.recipe_num
 </select>
 
 <select id="search" resultType="MkView" parameterType="String">

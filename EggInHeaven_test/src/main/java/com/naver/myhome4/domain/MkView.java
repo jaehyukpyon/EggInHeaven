@@ -9,6 +9,20 @@ public class MkView {
 	private String cook_db;
 	private String material_name;
 	private String recipe_best;
+	private String cook_num;
+	
+	public String getCook_db() {
+		return cook_db;
+	}
+	public void setCook_db(String cook_db) {
+		this.cook_db = cook_db;
+	}
+	public String getCook_num() {
+		return cook_num;
+	}
+	public void setCook_num(String cook_num) {
+		this.cook_num = cook_num;
+	}
 	public int getRecipe_num() {
 		return recipe_num;
 	}
