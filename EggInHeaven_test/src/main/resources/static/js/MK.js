@@ -152,16 +152,12 @@ $(function() {
 		count();
 	})
 	
-	$(document).on('click', '.qwe img', function() {
-		alert($(this).attr("id"));
-		// $(this).attr("id") 이동
-	})
 		
 	var timeoutId = 0;
 	$(document).on('mousedown','.ri', function() {
-	    setInterval(r, 100);	   
+		timeoutId = setInterval(r, 100);	   
 	}).on('mouseup mouseleave', function() {
-	    
+		clearTimeout(timeoutId);
 	});
 	
 	$(document).on('mousedown','.le', function() {
@@ -180,5 +176,21 @@ $(function() {
 		 $('.test').scrollLeft(_scrollX + 10);
 		 console.log(_scrollX);
 	}
+	
+
+	$(document).on('click', '.qwe img', function() {
+		 var recipe_num = $(this).attr("id");
+		 $.ajax({
+				url : "/myhome4/board/view",
+				type : "get",
+				async : false,
+				data : {
+					"num" : recipe_num,					
+				},success :function (result){
+					console.log(result);
+					location.href= "/myhome4/board/view?recipe_num="+recipe_num;
+				}
+			});
+	})
 	
 })

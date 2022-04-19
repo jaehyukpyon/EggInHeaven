@@ -61,7 +61,7 @@ img{
 	<c:forEach var = "recipe" items="${search}">
 		<div class="qwe" >		
 			<div>				
-				<img id="${recipe.recipe_num }" src="${pageContext.request.contextPath}/resources/img/portfolio/${recipe.cook_original}">
+				<img id="${recipe.recipe_num }" src="${pageContext.request.contextPath}/resources/img/portfolio/${recipe.cook_db}">
 			</div>			
 			<div>			
 				<span>${recipe.recipe_title}</span><br>				
@@ -74,7 +74,7 @@ img{
 		<c:forEach var = "recipe" items="${all }">
 			<div class="qwe">		
 			<div>				
-				<img id="${recipe.recipe_num }" src="${pageContext.request.contextPath}/resources/img/portfolio/${recipe.cook_original}">
+				<img id="${recipe.recipe_num }" src="${pageContext.request.contextPath}/resources/img/portfolio/${recipe.cook_db}">
 			</div>			
 			<div>			
 				<span>${recipe.recipe_title}</span><br>				
@@ -102,7 +102,5 @@ img{
 		</div>
 		</c:if>	
 	</div>
-	<button id="testbtn">test</button>
-
 </body>
 </html>

@@ -6,7 +6,7 @@ public class MkView {
 	private String recipe_title;
 	private String recipe_content;
 	private String recipe_time;
-	private String cook_original;
+	private String cook_db;
 	private String material_name;
 	private String recipe_best;
 	public int getRecipe_num() {
@@ -33,11 +33,11 @@ public class MkView {
 	public void setRecipe_time(String recipe_time) {
 		this.recipe_time = recipe_time;
 	}
-	public String getCook_original() {
-		return cook_original;
+	public String getcook_db() {
+		return cook_db;
 	}
-	public void setCook_original(String cook_original) {
-		this.cook_original = cook_original;
+	public void setcook_db(String cook_db) {
+		this.cook_db = cook_db;
 	}
 	public String getMaterial_name() {
 		return material_name;
