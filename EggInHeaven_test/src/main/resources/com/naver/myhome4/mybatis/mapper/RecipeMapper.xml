@@ -4,24 +4,69 @@
 	
 <mapper namespace="com.naver.myhome4.mybatis.mapper.RecipeMapper">
 	
+	<!-- 신호준 -->
+	<insert id="insertRecipe" parameterType="recipe">
+		<selectKey resultType="int"      order="BEFORE" 
+	                keyProperty="recipe_num">
+	      select nvl(max(recipe_num) + 1, 0) from recipe 
+	    </selectKey>
+		INSERT
+		INTO RECIPE
+		VALUES(#{recipe_num},#{member_id},#{recipe_title},#{recipe_content},
+		#{recipe_time},#{recipe_readcount},#{recipe_best},SYSDATE)
+	</insert>
+	
+	<delete id="recipeDelete">
+ 			delete from recipe
+   			 where r_num=#{recipe_num}
+	</delete>
+
+	<update id="recipeModify" parameterType="recipe">
+		UPDATE recipe
+		SET recipe_title = #{recipe_title}, 
+			recipe_content = #{recipe_content}, 
+			recipe_time = #{recipe_time}
+		WHERE recipe_num=#{recipe_num}
+	</update>
+	
+	<!-- 변재혁 -->
 	<select id="getDetail" resultType="recipe">
 		select *
 		from recipe
 		where recipe_num = #{num}
 	</select>
 	
-	<select id="getSauce" resultType="sauce">
+	<select id="getSauce" resultType="recipeSauce">
 		select *
 		from sauce
 		where recipe_num = #{num}
 	</select>
 	
-	<select id="getMaterial" resultType="material">
+	<select id="getMaterial" resultType="recipeMaterial">
 		select *
 		from material
 		where recipe_num = #{num}
-	</select>	
-		
+	</select>
+	
+	<select id="getCategory" resultType="category">
+		select r5.*, vegetable.vegetable_name
+		from (
+		select r4.*, seafood.seafood_name
+		from (
+		select r3.*, cereals.cereals_name 
+		from (
+		    select r2.*, milk.milk_name
+		    from (    
+		        select r1.category_num, r1.recipe_num, meat.meat_name
+		        from recipe_category r1 left outer join meat
+		        on r1.category_num = meat.meat_num
+		        where r1.recipe_num = #{num}) r2 left outer join milk 
+		            on r2.category_num = milk.milk_num) r3 left outer join cereals
+		                on r3.category_num = cereals.cereals_num) r4 left outer join seafood
+		                    on r4.category_num = seafood.seafood_num) r5 left outer join vegetable
+		                        on r5.category_num = vegetable.vegetable_num
+	</select>
+	
 	<select id="isAddedToLikeListTable" resultType="int">
 		select count(*)
 		from like_list
@@ -78,12 +123,93 @@
 	</select>
 	
 	
+	
+	
+	
 	<select id="getCategories" resultType="categoryRecipeView">
 		select rc.*, ma.matall_name, ma.category_num as category
 		from recipe_category rc inner join material_all ma
 			on rc.category_num = ma.matall_num
 		where recipe_num = #{recipe_num}
 		order by rc.category_num asc
+	</select>
+	
+	<!-- 
+	<select id="getListWithPaging" resultType="recipe">
+		<![CDATA[
+			select recipe_num, member_id, recipe_title, recipe_content, recipe_time, recipe_readcount, recipe_best, recipe_date
+			from (
+					select /*+INDEX(RECIPE recipe_desc_index) */ rownum rn, recipe_num, member_id, recipe_title, recipe_content, recipe_time, recipe_readcount, recipe_best, recipe_date
+					from RECIPE
+					where rownum <= #{pageNum} * #{amount}
+				)
+			where rn > (#{pageNum} - 1) * #{amount}
+		]]>		
+	</select>
+	
+	 -->
+	
+	<select id="getTotalCount" resultType="int">
+		select count(*)
+		from recipe
+		<where>
+			<if test="keyword != null and keyword !=''">
+				recipe_title like '%' || #{keyword} || '%'
+			</if>
+		</where>
+	</select>
+	
+	<select id="getListWithPaging" resultType="recipe">
+		<![CDATA[			
+			select recipe_num, member_id, recipe_title, recipe_content, recipe_time, recipe_readcount, recipe_best, recipe_date
+			from (
+					select /*+INDEX(RECIPE recipe_desc_index) */ rownum rn, recipe_num, member_id, recipe_title, recipe_content, recipe_time, recipe_readcount, recipe_best, recipe_date
+					from RECIPE
+					where			
+		]]>
+		
+		<if test="keyword != null and keyword !=''">
+					recipe_title like '%' || #{keyword} || '%' and
+		</if>
+		
+		<![CDATA[
+					rownum <= #{pageNum} * #{amount}
+				)
+			where rn > (#{pageNum} - 1) * #{amount}
+		]]>		
+	</select>
+	
+	<select id="getListWithPagingBestest" resultType="recipe">
+		<![CDATA[			
+			select recipe_num, member_id, recipe_title, recipe_content, recipe_time, recipe_readcount, recipe_best, recipe_date
+			from (
+					select /*+INDEX(RECIPE recipe_best_desc_index) */ rownum rn, recipe_num, member_id, recipe_title, recipe_content, recipe_time, recipe_readcount, recipe_best, recipe_date
+					from RECIPE
+					where recipe_best >= 0 and		
+		]]>
+		
+		<if test="keyword != null and keyword !=''">
+					recipe_title like '%' || #{keyword} || '%' and
+		</if>
+		
+		<![CDATA[
+					rownum <= #{pageNum} * #{amount}
+				)
+			where rn > (#{pageNum} - 1) * #{amount}
+		]]>
+	</select>
+	
+	<select id="getRecipeSteps" resultType="recipeStep">
+		select /*+INDEX(recipe_step recipe_step_index) */ *
+		from recipe_step
+		where recipe_num >= 0 and step_index >= 0 and recipe_num = #{recipe_num}
+	</select>
+	
+	<select id="getRecipeCookImages" resultType="recipeCookImage">
+		select *
+		from cook_image
+		where recipe_num = #{recipe_num}
+		order by cook_num asc
 	</select>
 	
 </mapper>

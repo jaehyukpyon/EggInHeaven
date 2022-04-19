@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -11,7 +12,9 @@
 </head>
 <body>
 <div class="container">
-		<form action="add" method="post" name="recipe" enctype="multipart/form-data">
+		<form action="add_1" method="post" name="recipe" enctype="multipart/form-data">
+		<%--  <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"> --%>
+		<input type="hidden" name="member_id" value="${id}">
 		<div class="center">
 			<div class="title">레시피 등록</div>
 			
@@ -34,35 +37,35 @@
 				<p class="cont_tit">카테고리</p><br>
 				<div class="check">
 				<b>육류</b> 
-					<label>돼지고기<input type="checkbox" name="meat_num" value="1-1"></label>
-					<label>소고기<input type="checkbox" name="meat_num" value="1-2"></label>
-					<label>닭고기<input type="checkbox" name="meat_num" value="1-3"></label> 
-					<label>소세지<input type="checkbox" name="meat_num" value="1-4"></label> 
-					<label>양고기<input type="checkbox" name="meat_num" value="1-5"></label><br>
+					<label>돼지고기<input type="checkbox" name="category_num" value="1-1"></label>
+					<label>소고기<input type="checkbox" name="category_num" value="1-2"></label>
+					<label>닭고기<input type="checkbox" name="category_num" value="1-3"></label> 
+					<label>소세지<input type="checkbox" name="category_num" value="1-4"></label> 
+					<label>양고기<input type="checkbox" name="category_num" value="1-5"></label><br>
 				<b>해산물</b> 
-				<label>생선<input type="checkbox" name="seafood_num" value="2-1"></label> 
-				<label>조개류<input type="checkbox" name="seafood_num" value="2-2"></label> 
-				<label>갑각류<input type="checkbox" name="seafood_num" value="2-3"></label> 
-				<label>오징어<input type="checkbox" name="seafood_num" value="2-4"></label>  
-				<label>해조류<input type="checkbox" name="seafood_num" value="2-5"></label><br>
+				<label>생선<input type="checkbox" name="category_num" value="2-1"></label> 
+				<label>조개류<input type="checkbox" name="category_num" value="2-2"></label> 
+				<label>갑각류<input type="checkbox" name="category_num" value="2-3"></label> 
+				<label>오징어<input type="checkbox" name="category_num" value="2-4"></label>  
+				<label>해조류<input type="checkbox" name="category_num" value="2-5"></label><br>
 				<b>채소류</b>
-				<label>양파<input type="checkbox" name="vegetable_num"value="3-1"></label>
-				<label>당근<input type="checkbox" name="vegetable_num" value="3-2"></label> 
-				<label>파<input type="checkbox" name="vegetable_num" value="3-3"></label> 
-				<label>토마토<input type="checkbox" name="vegetable_num" value="3-4"></label> 
-				<label>마늘<input type="checkbox" name="vegetable_num" value="3-5"></label><br>
+				<label>양파<input type="checkbox" name="category_num"value="3-1"></label>
+				<label>당근<input type="checkbox" name="category_num" value="3-2"></label> 
+				<label>파<input type="checkbox" name="category_num" value="3-3"></label> 
+				<label>토마토<input type="checkbox" name="category_num" value="3-4"></label> 
+				<label>마늘<input type="checkbox" name="category_num" value="3-5"></label><br>
 				<b>유제품</b> 
-				<label>우유<input type="checkbox" name="milk_num"value="4-1"></label>
-				 <label>치즈<input type="checkbox" name="milk_num" value="4-2"></label> 
-				 <label>버터<input type="checkbox" name="milk_num" value="4-3"></label> 
-				 <label>생크림<input type="checkbox" name="milk_num" value="4-4"></label> 
-				 <label>요거트<input type="checkbox" name="milk_num" value="4-5"></label><br>
+				<label>우유<input type="checkbox" name="category_num"value="4-1"></label>
+				 <label>치즈<input type="checkbox" name="category_num" value="4-2"></label> 
+				 <label>버터<input type="checkbox" name="category_num" value="4-3"></label> 
+				 <label>생크림<input type="checkbox" name="category_num" value="4-4"></label> 
+				 <label>요거트<input type="checkbox" name="category_num" value="4-5"></label><br>
 				 <b>곡류</b>
-				 <label>쌀<input type="checkbox" name="cereals_num" value="5-1"></label>
-				 <label>밀가루<input type="checkbox" name="cereals_num" value="5-2"></label> 
-				 <label>보리<input type="checkbox" name="cereals_num" value="5-3"></label> 
-				 <label>검은깨<input type="checkbox" name="cereals_num" value="5-4"></label> 
-				 <label>찹쌀<input type="checkbox" name="cereals_num" value="5-5"></label>
+				 <label>쌀<input type="checkbox" name="category_num" value="5-1"></label>
+				 <label>밀가루<input type="checkbox" name="category_num" value="5-2"></label> 
+				 <label>보리<input type="checkbox" name="category_num" value="5-3"></label> 
+				 <label>검은깨<input type="checkbox" name="category_num" value="5-4"></label> 
+				 <label>찹쌀<input type="checkbox" name="category_num" value="5-5"></label>
 			</div>
 			</div>
 			
@@ -94,10 +97,12 @@
 			<ul id="mat_area_1" class="ui-sortable">
 				<li id="limat_1">
 					<input type="text" 
-					class="form-control" style="width:330px;" 
+					class="form-control" style="width:330px;"
+					name="material_name" 
 					id="material"placeholder="예)돼지고기">
 					<input type="text" 
-					class="form-control" style="width:280px;" 
+					class="form-control" style="width:280px;"
+					name="material_amount" 
 					id="material_amount" placeholder="예)300g">
 					<span class="btn-del" ></span>
 				</li>
@@ -105,9 +110,11 @@
 				<li id="limat_2">
 					<input type="text" 
 					class="form-control" style="width:330px;" 
+					name="material_name" 
 					id="material" placeholder="예)양배추">
 					<input type="text" 
 					class="form-control" style="width:280px;" 
+					name="material_amount" 
 					id="material_amount" placeholder="예)1/2개">
 					<span class="btn-del" ></span>
 				</li>
@@ -115,9 +122,11 @@
 				<li id="limat_3">
 					<input type="text" 
 					class="form-control" style="width:330px;" 
+					name="material_name" 
 					id="material" placeholder="예)마늘">
 					<input type="text" 
 					class="form-control" style="width:280px;" 
+					name="material_amount" 
 					id="material_amount" placeholder="예)5알">
 					<span class="btn-del" ></span>
 				</li>
@@ -139,9 +148,11 @@
 			<ul id="mat_area_2" class="ui-sortable">
 				<li id="limats_1">
 					<input type="text" 
+					name="sauce_name"
 					class="form-control" style="width:330px;" 
 					placeholder="예)간장">
 					<input type="text" 
+					name="sauce_amount"
 					class="form-control" style="width:280px;" 
 					placeholder="예)2숟갈">
 					<span class="btn-del3" ></span>
@@ -149,9 +160,11 @@
 				
 				<li id="limats_2">
 					<input type="text" 
+					name="sauce_name"
 					class="form-control" style="width:330px;" 
 					placeholder="예)다진마늘">
-					<input type="text" 
+					<input type="text"
+					name="sauce_amount" 
 					class="form-control" style="width:280px;" 
 					placeholder="예)50g">
 					<span class="btn-del3" ></span>
@@ -159,9 +172,11 @@
 				
 				<li id="limats_3">
 					<input type="text" 
+					name="sauce_name"
 					class="form-control" style="width:330px;" 
 					placeholder="예)설탕">
-					<input type="text" 
+					<input type="text"
+					name="sauce_amount" 
 					class="form-control" style="width:280px;" 
 					placeholder="예)20g">
 					<span class="btn-del3" ></span>
@@ -184,13 +199,13 @@
 			<div id="step_1" class="step">
 			<p id="step_index" class="cont_tit3_1">Step1</p>
 			<div id="divStepText_1" style="display:inline-block">
-                <textarea name="step_text[]" id="step_content" class="form-control step_cont" 
+                <textarea name="step_content" id="step_content" class="form-control step_cont" 
                 placeholder="예) 소고기는 기름기를 떼어내고 적당한 크기로 썰어주세요."
                  style="height:160px; width:430px; resize:none;"></textarea>
                  <div id="divStepUpload" style="display:inline-block">
                 		<!-- <input type="hidden" name="step_photo[]" id="step_photo_1" value=""> -->
                 		<label>
-                		<input type="file" name="step_file_1" id="step_file_1"  accept="jpeg,png,gif" style="display:;width:0px;height:0px;font-size:0px;" >
+                		<input type="file" name="uploadfile" id="step_file_1"  accept="jpeg,png,gif" style="display:;width:0px;height:0px;font-size:0px;" >
                 		<img src="https://recipe1.ezmember.co.kr/img/pic_none2.gif" width="160" height="160">
             				</label>
             				<span class="btn-del2" ></span>
@@ -209,28 +224,29 @@
 		 <div id="divWorkArea" style="display:inline-block;" class="ui-sortable">
                 <div id="divWorkUpload_1" class="complete_pic">
             <label>
-            <input type="file" name="q_work_file_1" id="q_work_file_1" accept="jpeg,png,gif" style="display:;width:0px;height:0px;font-size:0px;" >
+            <!--  <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">-->
+            <input type="file" name="cook_uploadfile" id="q_work_file_1" accept="jpeg,png,gif" style="display:;width:0px;height:0px;font-size:0px;" >
                 <img  src="https://recipe1.ezmember.co.kr/img/pic_none3.gif" alt="No Image" style="width: 140px; height: 140px;">
             </label>
             </div>
             
                 <div id="divWorkUpload_2" class="complete_pic">
             <label>
-            <input type="file" name="q_work_file_2" id="q_work_file_2" accept="jpeg,png,gif" style="display:;width:0px;height:0px;font-size:0px;">
+            <input type="file" name="cook_uploadfile" id="q_work_file_2" accept="jpeg,png,gif" style="display:;width:0px;height:0px;font-size:0px;">
             <img  src="https://recipe1.ezmember.co.kr/img/pic_none3.gif" alt="No Image" style="width: 140px; height: 140px;">
         	</label>
         </div>
                 
                 <div id="divWorkUpload_3" class="complete_pic">
             <label>
-            <input type="file" name="q_work_file_3" id="q_work_file_3" accept="jpeg,png,gif" style="display:;width:0px;height:0px;font-size:0px;" >
+            <input type="file" name="cook_uploadfile" id="q_work_file_3" accept="jpeg,png,gif" style="display:;width:0px;height:0px;font-size:0px;" >
                 <img  src="https://recipe1.ezmember.co.kr/img/pic_none3.gif" alt="No Image" style="width: 140px; height: 140px;">
         </label>
         </div>
                 
                 <div id="divWorkUpload_4" class="complete_pic">
             <label>
-            <input type="file" name="q_work_file_4" id="q_work_file_4"  accept="jpeg,png,gif" style="display:;width:0px;height:0px;font-size:0px;" >
+            <input type="file" name="cook_uploadfile" id="q_work_file_4"  accept="jpeg,png,gif" style="display:;width:0px;height:0px;font-size:0px;" >
                 <img  src="https://recipe1.ezmember.co.kr/img/pic_none3.gif" alt="No Image" style="width: 140px; height: 140px;">
         	 </label>
         		</div>
@@ -242,7 +258,7 @@
     <button type="submit"  class="btn-lg btn-primary">저장</button>
 	    <button type="reset"  class="btn-lg btn-default">취소</button>
       </div>
-      
+      <sec:csrfInput/>
 	</form>
 </div>
 
@@ -398,7 +414,7 @@ var length = $('.btn-del3').length
 		 	$("#stepArea> div>p").last().text("Step"+(parseInt(cnt)+1) );
 		 	
 		 	$("#divStepUpload>label>input").last().attr("id","step_file_"+(parseInt(cnt)+1) );
-		 	$("#divStepUpload>label>input").last().attr("name","step_file_"+(parseInt(cnt)+1) );
+		 	
 		 	
 		 	
 		 	
@@ -585,6 +601,10 @@ var length = $('.btn-del3').length
 		}//reader.onload end
 			
 	}); // input[type="file"]-change event ends
+	/* 
+	$("form").submit(function(){
+		$("#mat_area_1").find("input"))
+	}) */
 	
 </script>
 <script>

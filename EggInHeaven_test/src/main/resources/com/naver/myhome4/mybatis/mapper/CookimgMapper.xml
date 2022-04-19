@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+	
+<mapper namespace="com.naver.myhome4.mybatis.mapper.CookimgMapper">
+
+<insert id="insertCookimg" >
+<selectKey resultType="int"      order="BEFORE" 
+	                keyProperty="cook_num">
+	      select nvl(max(cook_num) + 1, 0) from cook_image 
+	    </selectKey>
+		INSERT
+		INTO cook_image
+		VALUES(#{cook_num}, #{recipe_num}, #{cook_original}, #{cook_db})
+</insert>
+
+<delete id="cookimgDelete" >
+ 		delete from cook_image
+   	    where recipe_num=#{recipe_num}
+	</delete>
+	
+<select id="getDetail" resultType="map">
+		SELECT *
+		FROM COOK_IMAGE
+		WHERE recipe_num = #{recipe_num}
+		order by cook_num
+	</select>
+	
+	<delete id="removecook" >
+ 		delete from cook_image
+   	    where recipe_num=#{recipe_num}
+	</delete>
+
+<insert id="cookModify">
+		UPDATE cook_image
+		SET 
+		cook_original=#{cook_original}, cook_db=#{cook_db}
+		WHERE recipe_num=#{recipe_num}
+	</insert>
+	<!-- #{RECIPE_NUM}, #{RECIPE_TITLE}, #{RECIPE_CONTENT}, 
+			, #{RECIPE_TIME}, #{RECIPE_READCOUNT},#{RECIPE_BEST},
+			0,0,SYSDATE) -->
+</mapper>

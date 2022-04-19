@@ -10,7 +10,7 @@
 		select * from member where member_id = #{id}
 	</select>
 	
-	<insert id="insert" parameterType="Member">
+	<insert id="insert" parameterType="com.naver.myhome4.domain.Member">
 		insert into member
 		(member_id,password,email,name,gender)		
 		values(
@@ -49,6 +49,17 @@
 		and
 		member_id = #{id}
 		
+	</update>
+	
+	
+	<update id="update" parameterType="com.naver.myhome4.domain.Member">
+		update member
+		set		
+		password = #{password},
+		name = #{name},
+		gender = #{gender},
+		profile_img = #{profile_img}
+		where member_id = #{id}
 	</update>
 	
 

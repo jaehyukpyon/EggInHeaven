@@ -8,11 +8,6 @@ import com.naver.myhome4.domain.Community;
 
 public interface CommuMapper {
 
-	/*
-	 * // 글의 갯수 구하기 public int getListCount();
-	 * 
-	 * //글 목록 public List<Community> getCommuList(HashMap<String, Integer> map);
-	 */
 
 	// 글 등록하기
 	public void insertCommunity(Community community);
@@ -24,10 +19,10 @@ public interface CommuMapper {
 	public Community getDetail(int num);
 
 	// 내가 쓴 글 목록 보기
-	public List<Community> getMyCommuList(HashMap<String, Integer> map);
+	public List<Community> getMyCommuList(HashMap<String, Object> map);
 
 	//내가 쓴 글의 갯수 구하기
-	public int getMyListCount();
+	public int getMyListCount(String id);
 
 	//글 수정하기
 	public int communityModify(Community modifyboard);

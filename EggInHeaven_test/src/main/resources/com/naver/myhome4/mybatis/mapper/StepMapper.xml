@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+	
+<mapper namespace="com.naver.myhome4.mybatis.mapper.StepMapper">
+
+<insert id="insertStep" >
+<selectKey resultType="int"      order="BEFORE" 
+	                keyProperty="step_num">
+	      select nvl(max(step_num),0)+1 from recipe_step
+	    </selectKey>
+		INSERT
+		INTO RECIPE_STEP
+		VALUES(#{step_num},#{recipe_num}, #{step_index}, #{step_original, jdbcType=VARCHAR}, 
+		#{step_db, jdbcType=VARCHAR}, #{step_content}
+			)
+</insert>
+
+<delete id="stepDelete" >
+ delete from recipe_step
+    where recipe_num=#{recipe_num}
+</delete>
+
+<select id="getDetail" resultType="map">
+		SELECT *
+		FROM RECIPE_STEP
+		WHERE recipe_num = #{recipe_num}	
+		order by step_index
+	</select>
+	
+<delete id="removestep" >
+ delete from recipe_step
+    where recipe_num=#{recipe_num}
+</delete>
+
+<insert id="stepModify">
+		UPDATE recipe_step
+		SET STEP_INDEX = #{STEP_INDEX}, STEP_CONTENT= #{STEP_CONTENT}, 
+			STEP_ORIGINAL = #{STEP_ORIGINAL}, STEP_DB = #{STEP_DB}
+		WHERE recipe_num=#{recipe_num}
+	</insert>
+	<!-- #{STEP_NUM}, #{STEP_INDEX}, #{STEP_ORIGINAL, jdbcType=VARCHAR}, 
+		#{STEP_DB, jdbcType=VARCHAR}, #{STEP_CONTENT} -->
+</mapper>

@@ -1,0 +1,66 @@
+.list-group-item {
+	width: 200px;
+	text-align: center;
+}
+
+.my_tabs {
+	padding: 21px 21px 0;
+}
+
+.nav {
+	justify-content: center;
+}
+
+.container {
+	align-items: center; /* 수직 정렬 */
+	justify-content: center; /* flex direction에 대해서 정렬방식 선택 */
+	text-align: center;
+	margin-top: 50px;
+}
+
+.content {
+	display: inline-block;
+	text-align: center;
+	min-height: 700px;
+	margin-top: 50px;
+	border: 2px solid;
+	width: 70%;
+	margin-bottom: 10%;
+}
+
+.content-box {
+	margin: 5% 0;
+	box-sizing: border-box;
+
+}
+
+#no_list{
+	margin-top: 20%;
+}
+
+.main-img {
+	width: 200px;
+}
+
+.table {
+	margin-left: 5%;
+	margin-top: 10px;
+	width: 90%;
+}
+
+.go {
+	text-align: right;
+	width: 90%;
+	margin-bottom: 20px;
+}
+
+.preview {
+	text-align: left;
+}
+
+
+#all{
+	float: left;
+	margin-left : 100px;
+}
+
