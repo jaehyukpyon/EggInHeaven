@@ -41,30 +41,45 @@ public class BoardController {
 	private BoardService boardService;
 	
 	@GetMapping(value = "/view")
-	public ModelAndView boardView(@RequestParam(value = "recipe_num", required = true) int recipe_num, ModelAndView modelAndView) {
+	public ModelAndView boardView(@RequestParam(value = "num", required = true) int recipe_num, ModelAndView modelAndView) {
 		
 		Recipe recipe = boardService.getDetail(recipe_num);
 		List<RecipeSauce> sauces = boardService.getSauce(recipe_num); 
 		List<RecipeMaterial> materials = boardService.getMaterial(recipe_num);
 		
+		if (sauces.size() > 0) {
+			RecipeSauce sauceCommas = sauces.get(0);			
+			String[] sauceNameSplits = sauceCommas.getSauce_name().split(",");
+			String[] sauceAmountSplits = sauceCommas.getSauce_amount().split(",");			
+			
+			modelAndView.addObject("sauceNameSplits", sauceNameSplits);
+			modelAndView.addObject("sauceAmountSplits", sauceAmountSplits);			
+		} else {			
+			modelAndView.addObject("sauceNameSplits", null);
+			modelAndView.addObject("sauceAmountSplits", null);
+		}
 		
-		RecipeSauce sauceCommas = sauces.get(0);
-		String[] sauceNameSplits = sauceCommas.getSauce_name().split(",");
-		String[] sauceAmountSplits = sauceCommas.getSauce_amount().split(",");
-		
-		RecipeMaterial materialCommas = materials.get(0);
-		String[] materialNameSplits = materialCommas.getMaterial_name().split(",");
-		String[] materialAmountSplits = materialCommas.getMaterial_amount().split(",");
+		if (materials.size() > 0) {
+			RecipeMaterial materialCommas = materials.get(0);
+			String[] materialNameSplits = materialCommas.getMaterial_name().split(",");
+			String[] materialAmountSplits = materialCommas.getMaterial_amount().split(",");
+			
+			modelAndView.addObject("materialNameSplits", materialNameSplits);
+			modelAndView.addObject("materialAmountSplits", materialAmountSplits);
+		} else {
+			modelAndView.addObject("materialNameSplits", null);
+			modelAndView.addObject("materialAmountSplits", null);
+		}		
 		
 		/*System.out.println(sauceNameSplits.length); // 4
 		System.out.println(sauceAmountSplits.length); // 4
 		System.out.println(materialNameSplits.length); // 4
 		System.out.println(materialAmountSplits.length); // 4
 */		
-		logger.info(Arrays.toString(sauceNameSplits));
+		/*logger.info(Arrays.toString(sauceNameSplits));
 		logger.info(Arrays.toString(sauceAmountSplits));
 		logger.info(Arrays.toString(materialNameSplits));
-		logger.info(Arrays.toString(materialAmountSplits));
+		logger.info(Arrays.toString(materialAmountSplits));*/
 	
 		
 		List<CategoryRecipeView> categories = boardService.getCategories(recipe_num);
@@ -97,10 +112,7 @@ public class BoardController {
 		// modelAndView.addObject("sauces", sauces);
 		// modelAndView.addObject("materials", materials);
 		
-		modelAndView.addObject("materialNameSplits", materialNameSplits);
-		modelAndView.addObject("materialAmountSplits", materialAmountSplits);
-		modelAndView.addObject("sauceNameSplits", sauceNameSplits);
-		modelAndView.addObject("sauceAmountSplits", sauceAmountSplits);
+		
 		
 		modelAndView.addObject("meatCategories", meatCategories);
 		modelAndView.addObject("milkCategories", milkCategories);

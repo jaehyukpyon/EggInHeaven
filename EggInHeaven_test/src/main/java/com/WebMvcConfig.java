@@ -6,10 +6,10 @@ import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry
 import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
-import com.naver.myhome4.domain.CookSaveFolder;
+import com.naver.myhome4.domain.Cooksavefolder;
 import com.naver.myhome4.domain.MySaveFolder2;
 import com.naver.myhome4.domain.ProfileSaveFolder;
-import com.naver.myhome4.domain.StepSaveFolder;
+import com.naver.myhome4.domain.Stepsavefolder;
 import com.naver.myhome4.domain.JayPath;
 import com.naver.myhome4.domain.MySaveFolder;
 
@@ -20,15 +20,15 @@ public class WebMvcConfig implements WebMvcConfigurer {
 	private MySaveFolder2 mysavefolder;
 	
 	@Autowired
-	private CookSaveFolder cooksavefolder;
+	private Cooksavefolder cooksavefolder;
 	
 	@Autowired
-	private StepSaveFolder stepsavefolder;
+	private Stepsavefolder stepsavefolder;
 	
 	@Autowired
 	private ProfileSaveFolder profilesavefolder;
   
-  @Autowired
+    @Autowired
 	private JayPath jayPath;
 	
 	
@@ -52,7 +52,7 @@ public class WebMvcConfig implements WebMvcConfigurer {
 	     	.addResourceLocations(profilesavefolder.getProfilesavepath());
     
     
-    registry.addResourceHandler("/jayStep/**").addResourceLocations(jayPath.getStepPath());
+	    registry.addResourceHandler("/jayStep/**").addResourceLocations(jayPath.getStepPath());
 		registry.addResourceHandler("/jayCook/**").addResourceLocations(jayPath.getCookPath());
 	}
 	

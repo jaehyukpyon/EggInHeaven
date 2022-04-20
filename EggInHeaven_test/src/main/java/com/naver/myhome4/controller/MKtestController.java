@@ -12,6 +12,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.naver.myhome4.domain.MkView;
 import com.naver.myhome4.service.MkService;
@@ -27,6 +28,7 @@ public class MKtestController {
 	public String recipe(Model model) {
 		List<MkView> a = mkService.all();						
 		model.addAttribute("all",a);
+		System.out.println("?");
 		return "mk/detalSearchList";
 	}
 
@@ -48,7 +50,7 @@ public class MKtestController {
 		model.addAttribute("result",result);
 		model.addAttribute("id",id);
 		model.addAttribute("name",name2);
-
+		System.out.println("??");
 		model.addAttribute("time",time);
 		return "mk/detalSearchList";
 	}
@@ -57,4 +59,6 @@ public class MKtestController {
 	public String searchTest() {
 		return "mk/detailSearch";
 	}
+	
+
 }

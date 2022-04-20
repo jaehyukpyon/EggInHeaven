@@ -152,22 +152,45 @@ $(function() {
 		count();
 	})
 	
-	$(document).on('click', '.qwe img', function() {
-		alert($(this).attr("id"));
-		// $(this).attr("id") 이동
-	})
+		
+	var timeoutId = 0;
+	$(document).on('mousedown','.ri', function() {
+		timeoutId = setInterval(r, 100);	   
+	}).on('mouseup mouseleave', function() {
+		clearTimeout(timeoutId);
+	});
 	
+	$(document).on('mousedown','.le', function() {
+	    timeoutId = setInterval(l, 100);	   
+	}).on('mouseup mouseleave', function() {
+	    clearTimeout(timeoutId);
+	});
 	
-	//누르고 있는 상태로 수정해야함.
-	$(document).on('click', '.le', function() {
+	function l(){
+		 var _scrollX = $('.test').scrollLeft();
+		 $('.test').scrollLeft(_scrollX - 10);
+		 console.log(_scrollX);
+	}
+	function r(){
 		var _scrollX = $('.test').scrollLeft();
-		 $('.test').scrollLeft(_scrollX - 100);
-	})
+		 $('.test').scrollLeft(_scrollX + 10);
+		 console.log(_scrollX);
+	}
 	
-	$(document).on('click', '.ri', function() {		
-		var _scrollX = $('.test').scrollLeft();
-		 $('.test').scrollLeft(_scrollX + 100);
-	})
 
+	$(document).on('click', '.qwe img', function() {
+		 var recipe_num = $(this).attr("id");
+		 $.ajax({
+				url : "/myhome4/board/view",
+				type : "get",
+				async : false,
+				data : {
+					"num" : recipe_num,					
+				},success :function (result){
+					console.log(result);
+					location.href= "/myhome4/board/view?num="+recipe_num;
+				}
+			});
+	})
 	
 })
