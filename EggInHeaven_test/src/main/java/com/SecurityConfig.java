@@ -48,7 +48,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 				.antMatchers("/**").permitAll();
 		
 		//http.csrf().csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse());
-		http.csrf().disable();
+		// http.csrf().disable();
 		http.formLogin().loginPage("/member/login")
 			.loginProcessingUrl("/member/loginProcess")
 			.usernameParameter("id")

@@ -13,7 +13,6 @@ img {
 	width: 8rem;
 	height: 9rem;
 }
-
 .qwe{
 	float: left;
 	align-items: center;
@@ -24,12 +23,10 @@ img {
 .test{
 	display: flex;
 	overflow-x: auto; 
-
 }
 .test::-webkit-scrollbar {
     display: none; /* Chrome, Safari, Opera*/
 }
-
 #search{
 	padding: 0.5rem;
 }
@@ -61,7 +58,7 @@ img{
 	<c:forEach var = "recipe" items="${search}">
 		<div class="qwe" >		
 			<div>				
-				<img id="${recipe.recipe_num }" src="${pageContext.request.contextPath}/resources/img/portfolio/${recipe.cook_original}">
+				<img id="${recipe.recipe_num }" src="${pageContext.request.contextPath}/resources/img/portfolio/${recipe.cook_db}">
 			</div>			
 			<div>			
 				<span>${recipe.recipe_title}</span><br>				
@@ -74,7 +71,7 @@ img{
 		<c:forEach var = "recipe" items="${all }">
 			<div class="qwe">		
 			<div>				
-				<img id="${recipe.recipe_num }" src="${pageContext.request.contextPath}/resources/img/portfolio/${recipe.cook_original}">
+				<img id="${recipe.recipe_num }" src="${pageContext.request.contextPath}/jayCook${recipe.cook_db}">
 			</div>			
 			<div>			
 				<span>${recipe.recipe_title}</span><br>				
@@ -102,7 +99,5 @@ img{
 		</div>
 		</c:if>	
 	</div>
-
-
 </body>
 </html>

@@ -48,14 +48,12 @@
 					<div class="collapse navbar-collapse justify-content-center"
 						id="navbarColor02">
 						<ul class="navbar-nav">
-							<li class="nav-item"><a class="nav-link" href="2">[레시피]</a></li>
-							<li class="nav-item"><a class="nav-link" href="3">[상세검색]</a></li>
-							<li class="nav-item"><a class="nav-link" href="#">[랭킹]</a></li>
-							<li class="nav-item"><a class="nav-link" href="#">[커뮤니티]</a></li>
-							<li class="nav-item"><a class="nav-link" href="#">[내 레시피
-									등록]</a></li>
-							<li class="nav-item"><a class="nav-link"
-								href="${pageContext.request.contextPath}/mypage">[마이 페이지]</a></li>
+							<li class="nav-item"><a class="nav-link" href="/myhome4/board/list">[레시피]</a></li>
+							<li class="nav-item"><a class="nav-link" href="/myhome4/test/3">[상세검색]</a></li>
+							<li class="nav-item"><a class="nav-link" href="/myhome4/board/list?order=bestest">[랭킹]</a></li>
+							<li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/community/list">[커뮤니티]</a></li>
+							<li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/recipe/write">[내 레시피 등록]</a></li>
+							<li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/mypage">[마이 페이지]</a></li>
 								
 							<li class="nav-item">
 								<form action="${pageContext.request.contextPath}/member/logout" method="post"
@@ -89,12 +87,11 @@
 				<div class="collapse navbar-collapse justify-content-center"
 					id="navbarColor02">
 					<ul class="navbar-nav">
-						<li class="nav-item"><a class="nav-link" href="2">[레시피]</a></li>
-						<li class="nav-item"><a class="nav-link" href="3">[상세검색]</a></li>
-						<li class="nav-item"><a class="nav-link" href="#">[랭킹]</a></li>
+						<li class="nav-item"><a class="nav-link" href="/myhome4/board/list">[레시피]</a></li>
+						<li class="nav-item"><a class="nav-link" href="/myhome4/test/3">[상세검색]</a></li>
+						<li class="nav-item"><a class="nav-link" href="/myhome4/board/list?order=bestest">[랭킹]</a></li>
 						<li class="nav-item"><a class="nav-link" href="#">[커뮤니티]</a></li>
-						<li class="nav-item"><a class="nav-link" href="#">[내 레시피
-								등록]</a></li>
+						<!-- <li class="nav-item"><a class="nav-link" href="#">[내 레시피 등록]</a></li> -->
 					</ul>
 				</div>
 			</nav>

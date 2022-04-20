@@ -5,7 +5,7 @@
 <mapper namespace="com.naver.myhome4.mybatis.mapper.MkMapper">
 
 <select id="all" resultType="MkView" parameterType="String">
-	select a.*,b.cook_num,b.cook_original,b.cook_db from 
+	select a.*,b.cook_num,b.cook_db,b.cook_db from 
 	recipe a INNER JOIN cook_image b 
 	on a.recipe_num = b.recipe_num
 	ORDER BY recipe_best desc
@@ -14,7 +14,7 @@
 <select id="search" resultType="MkView" parameterType="String">
 	select a.*,b.material_name 
 	from 
-		(select c.recipe_num,c.recipe_title,c.recipe_content,c.recipe_time,c.recipe_best,d.cook_original 
+		(select c.recipe_num,c.recipe_title,c.recipe_content,c.recipe_time,c.recipe_best,d.cook_db 
 		from
 		recipe c 
 		INNER JOIN 
