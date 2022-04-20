@@ -34,7 +34,7 @@ import com.naver.myhome4.service.BoardService;
 @Controller
 @RequestMapping(value="/board")
 public class BoardController {
-
+  
 	private static final Logger logger = LoggerFactory.getLogger(BoardController.class);
 	
 	@Autowired

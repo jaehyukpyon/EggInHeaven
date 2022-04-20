@@ -5,24 +5,40 @@
 <mapper namespace="com.naver.myhome4.mybatis.mapper.MkMapper">
 
 <select id="all" resultType="MkView" parameterType="String">
-	select a.*,b.cook_num,b.cook_db,b.cook_db from 
-	recipe a INNER JOIN cook_image b 
-	on a.recipe_num = b.recipe_num
-	ORDER BY recipe_best desc
+
+    select c.*,d.cook_num,d.cook_db from 
+    recipe c
+    inner join    
+    (select a.* from
+    cook_image a
+    inner join
+    (select recipe_num,min(cook_num) min
+    from cook_image 
+    group by recipe_num) b
+    on a.cook_num =  b.min) d
+    on c.recipe_num = d.recipe_num
+
+	
 </select>
 
 <select id="search" resultType="MkView" parameterType="String">
-	select a.*,b.material_name 
+		select a.recipe_num,a.recipe_title,a.recipe_content,a.recipe_time,a.recipe_best,b.cook_db,b.material_name 
 	from 
-		(select c.recipe_num,c.recipe_title,c.recipe_content,c.recipe_time,c.recipe_best,d.cook_db 
-		from
-		recipe c 
-		INNER JOIN 
-		cook_image d 
-		on c.recipe_num = d.recipe_num) 
+	recipe
 	a
 	inner join
-	material b
+	(select e.cook_db,e.cook_num,f.material_name,f.recipe_num from
+    (select a.* from
+    cook_image a
+    inner join
+    (select recipe_num,min(cook_num) min
+    from cook_image 
+    group by recipe_num) b
+    on a.cook_num =  b.min) e
+    inner join
+    material f
+    on e.recipe_num = f.recipe_num)
+    b    
 	on a.recipe_num = b.recipe_num 
 	where a.recipe_time &lt;= ${time} and b.material_name = '${material}'
 </select>

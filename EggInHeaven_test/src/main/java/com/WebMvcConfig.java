@@ -16,6 +16,7 @@ import com.naver.myhome4.domain.MySaveFolder;
 @Configuration
 public class WebMvcConfig implements WebMvcConfigurer {
 
+
 	@Autowired
 	private MySaveFolder2 mysavefolder;
 	
@@ -41,17 +42,18 @@ public class WebMvcConfig implements WebMvcConfigurer {
 	@Override
 	public void addResourceHandlers(ResourceHandlerRegistry registry) {
 
-		 registry.addResourceHandler("/resources/**").addResourceLocations("classpath:/static/");
-	     registry.addResourceHandler("/upload/**")
-	     	.addResourceLocations(mysavefolder.getSavepath());
-	     registry.addResourceHandler("/cook/**")
-	     	.addResourceLocations(cooksavefolder.getCooksavepath());
-	     registry.addResourceHandler("/step/**")
-	     	.addResourceLocations(stepsavefolder.getStepsavepath());
-	     registry.addResourceHandler("/profile/**")
-	     	.addResourceLocations(profilesavefolder.getProfilesavepath());
+
+       registry.addResourceHandler("/resources/**").addResourceLocations("classpath:/static/");
+        registry.addResourceHandler("/upload/**")
+           .addResourceLocations(mysavefolder.getSavepath());
+        registry.addResourceHandler("/cook/**")
+           .addResourceLocations(cooksavefolder.getCooksavepath());
+        registry.addResourceHandler("/step/**")
+           .addResourceLocations(stepsavefolder.getStepsavepath());
+        registry.addResourceHandler("/profile/**")
+           .addResourceLocations(profilesavefolder.getProfilesavepath());    
     
-    
+
 	    registry.addResourceHandler("/jayStep/**").addResourceLocations(jayPath.getStepPath());
 		registry.addResourceHandler("/jayCook/**").addResourceLocations(jayPath.getCookPath());
 	}

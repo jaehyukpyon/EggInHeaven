@@ -13,9 +13,7 @@ $(function() {
 						if (total != checked) {
 							$("input:checkbox[name='" + name + "']").prop(
 									"checked", true);
-							for (var i = 0; i < total; i++) {
-								// var chk = $("input[name="+name+"]")[i].value;
-								// // name= milk 일 경우 결과 우 , 터 , undefined
+							for (var i = 0; i < total; i++) {		
 								$('.asd')
 										.append(
 												'<div class="add" id="'

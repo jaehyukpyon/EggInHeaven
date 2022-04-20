@@ -38,6 +38,7 @@ public class MKtestController {
 		String name2[] = request.getParameterValues("name");
 		List<MkView> a = mkService.search(name+",", time);
 		List<MkView> b = mkService.all();
+		
 		int result = 0;
 		if(a.size() != 0) {
 			model.addAttribute("search",a);
@@ -50,7 +51,6 @@ public class MKtestController {
 		model.addAttribute("result",result);
 		model.addAttribute("id",id);
 		model.addAttribute("name",name2);
-		System.out.println("??");
 		model.addAttribute("time",time);
 		return "mk/detalSearchList";
 	}

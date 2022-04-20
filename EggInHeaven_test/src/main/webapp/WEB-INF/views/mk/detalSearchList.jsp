@@ -70,7 +70,7 @@ img{
 	<c:otherwise>
 		<c:forEach var = "recipe" items="${all }">
 			<div class="qwe">		
-			<div>				
+			<div>
 				<img id="${recipe.recipe_num }" src="${pageContext.request.contextPath}/jayCook${recipe.cook_db}">
 			</div>			
 			<div>			
@@ -96,6 +96,7 @@ img{
 		<div id="search">
 			<br>
 			<span style="color : red">검색 결과가 없어 기존 리스트를 보여줍니다.</span>
+			<span id="allCancel"style="float:right; cursor: pointer;">모두 지우기</span>
 		</div>
 		</c:if>	
 	</div>
