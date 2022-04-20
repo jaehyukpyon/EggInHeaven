@@ -5,15 +5,11 @@
 <mapper namespace="com.naver.myhome4.mybatis.mapper.StepMapper">
 
 <insert id="insertStep" >
-<selectKey resultType="int"      order="BEFORE" 
-	                keyProperty="step_num">
-	      select nvl(max(step_num),0)+1 from recipe_step
-	    </selectKey>
+
 		INSERT
 		INTO RECIPE_STEP
-		VALUES(#{step_num},#{recipe_num}, #{step_index}, #{step_original, jdbcType=VARCHAR}, 
-		#{step_db, jdbcType=VARCHAR}, #{step_content}
-			)
+		VALUES(#{recipe_num}, #{step_index}, #{step_original, jdbcType=VARCHAR}, 
+		#{step_db, jdbcType=VARCHAR}, #{step_content})
 </insert>
 
 <delete id="stepDelete" >

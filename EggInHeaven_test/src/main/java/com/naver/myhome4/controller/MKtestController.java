@@ -28,6 +28,7 @@ public class MKtestController {
 	public String recipe(Model model) {
 		List<MkView> a = mkService.all();						
 		model.addAttribute("all",a);
+		System.out.println("?");
 		return "mk/detalSearchList";
 	}
 

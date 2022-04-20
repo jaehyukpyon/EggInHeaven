@@ -5,6 +5,7 @@
 <mapper namespace="com.naver.myhome4.mybatis.mapper.MkMapper">
 
 <select id="all" resultType="MkView" parameterType="String">
+
     select c.*,d.cook_num,d.cook_db from 
     recipe c
     inner join    
@@ -16,6 +17,8 @@
     group by recipe_num) b
     on a.cook_num =  b.min) d
     on c.recipe_num = d.recipe_num
+
+	
 </select>
 
 <select id="search" resultType="MkView" parameterType="String">

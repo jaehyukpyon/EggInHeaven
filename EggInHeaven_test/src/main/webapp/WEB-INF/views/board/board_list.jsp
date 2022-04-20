@@ -201,7 +201,7 @@
     		// 게시글의 제목 클릭 시 이동 이벤트 추가
     		$("a.move").on("click", function (e) {
     			e.preventDefault();
-    			actionForm.append("<input type='hidden' name='recipe_num' value='" + $(this).attr("href") + "' />");    			
+    			actionForm.append("<input type='hidden' name='num' value='" + $(this).attr("href") + "' />");    			
     			
     			actionForm.attr("action", "/myhome4/board/view");
     			actionForm.submit();
