@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
-	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-	
+   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+   
 <mapper namespace="com.naver.myhome4.mybatis.mapper.MkMapper">
 
 <select id="all" resultType="MkView" parameterType="String">
-
     select c.*,d.cook_num,d.cook_db from 
     recipe c
     inner join    
@@ -17,17 +16,15 @@
     group by recipe_num) b
     on a.cook_num =  b.min) d
     on c.recipe_num = d.recipe_num
-
-	
 </select>
 
-<select id="search" resultType="MkView" parameterType="String">
-		select a.recipe_num,a.recipe_title,a.recipe_content,a.recipe_time,a.recipe_best,b.cook_db,b.material_name 
-	from 
-	recipe
-	a
-	inner join
-	(select e.cook_db,e.cook_num,f.material_name,f.recipe_num from
+<select id="search" resultType="MkView" parameterType="Map">
+   select a.recipe_num,a.recipe_title,a.recipe_content,a.recipe_time,a.recipe_best,b.cook_db,b.material_name 
+   from 
+   recipe
+   a
+   inner join
+   (select e.cook_db,e.cook_num,f.material_name,f.recipe_num from
     (select a.* from
     cook_image a
     inner join
@@ -36,12 +33,17 @@
     group by recipe_num) b
     on a.cook_num =  b.min) e
     inner join
-    material f
+    (select recipe_num,listagg(category_num,',') WITHIN GROUP(order by recipe_num) as material_name
+    from recipe_category
+    group by recipe_num) f
     on e.recipe_num = f.recipe_num)
     b    
-	on a.recipe_num = b.recipe_num 
-	where a.recipe_time &lt;= ${time} and b.material_name = '${material}'
+   on a.recipe_num = b.recipe_num 
+   where a.recipe_time &lt;= #{time} and 
+   
+   <foreach collection="material" separator="and" item="index">
+         instr (b.material_name , #{index}) > 0
+   </foreach>
 </select>
-	<!-- http://localhost:8088/myhome4/board/view?recipe_num=1 -->
 
 </mapper>
