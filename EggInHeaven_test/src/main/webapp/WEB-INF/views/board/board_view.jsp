@@ -354,7 +354,7 @@
 		<c:if test="${pinfo.username == recipe.member_id }">			
 			<div class="container" style="margin-bottom: 20px;">
 				<div>
-					<button class="btn btn-success float-right" style="margin-left: 10px;">삭제하기</button>
+					<!-- <button class="btn btn-success float-right" style="margin-left: 10px;">삭제하기</button> -->
 					<button class="btn btn-secondary float-right"><a href="/myhome4/recipe/modify_action?num=${recipe.recipe_num }">수정하기</a></button>
 				</div>
 			</div>			
