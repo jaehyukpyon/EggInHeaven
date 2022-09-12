@@ -1,4 +1,4 @@
-# EggInHeaven - 레시피 공유 커뮤니티 사이트
+# "EggInHeaven" - 레시피 공유 커뮤니티 사이트
 
 <div align=center>
   <img src="https://img.shields.io/badge/java 8-007396?style=for-the-badge&logo=java&logoColor=white">
