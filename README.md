@@ -1,7 +1,7 @@
 # "EggInHeaven" - 레시피 공유 커뮤니티 사이트
 
 <div align=center>
-  <img src="https://img.shields.io/badge/java 8-007396?style=for-the-badge&logo=java&logoColor=white">
+  <img src="https://img.shields.io/badge/java-007396?style=for-the-badge&logo=java&logoColor=white">
   <br />
   <img src="https://img.shields.io/badge/spring boot-6DB33F?style=for-the-badge&logo=springboot&logoColor=white">
   <img src="https://img.shields.io/badge/apache maven-E6526F?style=for-the-badge&logo=apachemaven&logoColor=white">
