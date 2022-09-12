@@ -29,14 +29,14 @@
 --------------------  
 
 + 메인페이지
-<img src="https://user-images.githubusercontent.com/27190639/189662063-29bdda8a-2e9e-423f-ad11-dd1b9bc5dc3b.PNG" width="500px" height="500px">
+<img src="https://user-images.githubusercontent.com/27190639/189662063-29bdda8a-2e9e-423f-ad11-dd1b9bc5dc3b.PNG" width="800px" height="500px">
 
 + 로그인 페이지
-<img src="https://user-images.githubusercontent.com/27190639/189662058-c9f13449-20cf-4387-8da0-1408e2a34c90.PNG" width="500px" height="500px">
+<img src="https://user-images.githubusercontent.com/27190639/189662058-c9f13449-20cf-4387-8da0-1408e2a34c90.PNG" width="800px" height="500px">
 
 + 레시피 등록 페이지
-<img src="https://user-images.githubusercontent.com/27190639/189662305-b0836172-0c8c-4dfe-bc39-8e791125237b.PNG" width="500px" height="500px">
-<img src="https://user-images.githubusercontent.com/27190639/189662306-0cbeb452-be77-4f40-8305-b3a4def34ac1.PNG" width="500px" height="500px">
-<img src="https://user-images.githubusercontent.com/27190639/189662309-6da1fb23-92eb-4cbc-99e4-0e7a0dd4f210.PNG" width="500px" height="500px">
-<img src="https://user-images.githubusercontent.com/27190639/189662310-b39c1696-bc57-4a87-9470-8521708dab5a.PNG" width="500px" height="500px">
+<img src="https://user-images.githubusercontent.com/27190639/189662305-b0836172-0c8c-4dfe-bc39-8e791125237b.PNG" width="800px" height="500px">
+<img src="https://user-images.githubusercontent.com/27190639/189662306-0cbeb452-be77-4f40-8305-b3a4def34ac1.PNG" width="800px" height="500px">
+<img src="https://user-images.githubusercontent.com/27190639/189662309-6da1fb23-92eb-4cbc-99e4-0e7a0dd4f210.PNG" width="800px" height="500px">
+<img src="https://user-images.githubusercontent.com/27190639/189662310-b39c1696-bc57-4a87-9470-8521708dab5a.PNG" width="800px" height="500px">
 
