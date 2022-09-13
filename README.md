@@ -29,9 +29,11 @@
 --------------------  
 
 + 메인페이지
-<img src="https://user-images.githubusercontent.com/27190639/189850914-1d951ebe-1158-4482-9a08-e76f1e7259a8.PNG" width="800px" height="500px">
-<img src="https://user-images.githubusercontent.com/27190639/189850920-197b193c-70e1-40c8-a398-a3dbb0ef8653.PNG" width="800px" height="300px">
+<img src="https://user-images.githubusercontent.com/27190639/189850914-1d951ebe-1158-4482-9a08-e76f1e7259a8.PNG" width="1000px" height="500px">
+<img src="https://user-images.githubusercontent.com/27190639/189850920-197b193c-70e1-40c8-a398-a3dbb0ef8653.PNG" width="1000px" height="300px">
+
 ![main1](https://user-images.githubusercontent.com/27190639/189850914-1d951ebe-1158-4482-9a08-e76f1e7259a8.PNG)
+
 ![main2](https://user-images.githubusercontent.com/27190639/189850920-197b193c-70e1-40c8-a398-a3dbb0ef8653.PNG)
 
 + 로그인 페이지
