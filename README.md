@@ -66,4 +66,4 @@
 + 레시피 조건 상세 검색 페이지
 ![detail_search](https://user-images.githubusercontent.com/27190639/189850905-b9c1d2bb-5063-4175-981f-1947a924b686.png)
 <br />
--------------------- 
+<hr />
